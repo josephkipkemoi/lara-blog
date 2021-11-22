@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class BlogTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
     use WithFaker;
     /**
      * A basic feature test example.
@@ -48,5 +48,12 @@ class BlogTest extends TestCase
                      'current_page',
                      'data' => []
                  ]);
+    }
+
+    public function test_can_edit_and_update_blog()
+    {
+        $response = $this->put('/api/blog/1?blog_id=7&title=new Title&body=new Body');
+
+        $response->assertOk();
     }
 }
