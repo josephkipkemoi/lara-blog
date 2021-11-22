@@ -14,6 +14,12 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function index(Request $request)
+    {
+        return Blog::where('user_id','=', $request->user_id)->paginate(5);
+    }
+
     public function store(Request $request, Blog $blog)
     {
         //
