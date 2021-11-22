@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -18,7 +17,7 @@ class BlogController extends Controller
     public function store(Request $request, Blog $blog)
     {
         //
-        $blog->validate($request);
+        return $blog->validate($request);
     }
 
 }
