@@ -23,4 +23,5 @@ class Blog extends Model
         // store request values to database
         return Blog::create($request->all());
     }
+
 }
