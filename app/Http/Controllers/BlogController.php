@@ -15,15 +15,23 @@ class BlogController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    //  Get resource based on user id
     public function index(Request $request)
     {
         return Blog::where('user_id','=', $request->user_id)->paginate(5);
     }
 
+    // Store resource to Database
     public function store(Request $request, Blog $blog)
     {
         //
         return $blog->validate($request);
+    }
+
+    // Update resource by id
+    public function update(Request $request, $id)
+    {
+        return Blog::where('user_id', $id)->where('id', $request->blog_id)->update(['title' => $request->title,'body' => $request->body]);
     }
 
 }
