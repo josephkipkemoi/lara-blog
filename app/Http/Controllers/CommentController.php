@@ -19,4 +19,10 @@ class CommentController extends Controller
     {
         return $blog->find($id)->comments;
     }
+
+    // Delete comment
+    public function delete($id)
+    {
+        return Comment::find($id)->delete();
+    }
 }
