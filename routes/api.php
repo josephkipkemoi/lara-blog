@@ -17,16 +17,9 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::post('/blog', [BlogController::class, 'store']);
-Route::get('/blog', [BlogController::class, 'index']);
-Route::put('/blog/{id}', [BlogController::class,'update']);
-Route::get('/blog/{id}', [BlogController::class, 'show']);
-Route::delete('/blog/{id}', [BlogController::class, 'delete']);
+Route::resource('/blog', BlogController::class);
+Route::resource('/comment', CommentController::class);
 
-Route::post('/comment', [CommentController::class, 'store']);
-Route::get('/comment/{id}', [CommentController::class, 'show']);
-Route::delete('/comment/{id}', [CommentController::class, 'delete']);
-Route::put('/comment/{id}',[CommentController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

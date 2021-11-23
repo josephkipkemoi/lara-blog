@@ -13,6 +13,8 @@ class Comment extends Model
 
     protected $casts = ['comment_id' => 'integer','comment_body' => 'string'];
 
+    protected $hidden = ['created_at','updated_at','comment_id'];
+
     public function validate($request)
     {
         // Validate request

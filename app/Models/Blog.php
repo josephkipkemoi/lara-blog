@@ -13,7 +13,7 @@ class Blog extends Model
 
     protected $casts = ['title' => 'string','author' => 'string','body' => 'string'];
 
-    protected $hidden = ['updated_at'];
+    protected $hidden = ['updated_at','created_at','user_id'];
 
     public function validate($request)
     {
