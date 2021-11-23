@@ -20,4 +20,11 @@ class CommentTest extends TestCase
 
         $response->assertStatus(201);
     }
+
+    public function test_can_get_comment()
+    {
+        $response = $this->get('/api/comment/1');
+
+        $response->assertOk();
+    }
 }
