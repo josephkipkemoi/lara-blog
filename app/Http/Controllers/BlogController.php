@@ -40,4 +40,9 @@ class BlogController extends Controller
         return $blog->findOrFail($id);
     }
 
+    // Remove resource by ID
+    public function delete($id, Blog $blog)
+    {
+        return $blog->find($id)->delete();
+    }
 }
