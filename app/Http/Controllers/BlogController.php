@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -16,8 +17,9 @@ class BlogController extends Controller
      */
 
     //  Get resource based on user id
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
+        // return Blog::whereBelongsTo($user);
         return Blog::where('user_id','=', $request->user_id)->paginate(5);
     }
 
@@ -43,7 +45,7 @@ class BlogController extends Controller
     // Remove resource by ID
     public function delete($id, Blog $blog)
     {
-        $post = $blog->find($id);
+        $post = $blog->findOrFail($id);
 
         foreach($post->comments as $comment)
         {
