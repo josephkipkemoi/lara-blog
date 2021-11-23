@@ -24,4 +24,8 @@ class Blog extends Model
         return Blog::create($request->all());
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'comment_id');
+    }
 }
