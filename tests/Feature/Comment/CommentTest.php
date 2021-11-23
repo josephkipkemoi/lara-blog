@@ -34,4 +34,11 @@ class CommentTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_can_update_comment()
+    {
+        $response = $this->put('/api/comment/6');
+
+        $response->assertOk();
+    }
 }
