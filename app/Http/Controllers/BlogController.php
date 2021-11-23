@@ -34,4 +34,10 @@ class BlogController extends Controller
         return Blog::where('user_id', $id)->where('id', $request->blog_id)->update(['title' => $request->title,'body' => $request->body]);
     }
 
+    // Get resource by id
+    public function show($id, Blog $blog, Request $request)
+    {
+        return $blog->findOrFail($id);
+    }
+
 }
