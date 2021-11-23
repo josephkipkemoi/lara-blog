@@ -17,12 +17,18 @@ class CommentController extends Controller
     // get comment related to blog
     public function show($id, Blog $blog)
     {
-        return $blog->find($id)->comments;
+        return $blog->findOrFail($id)->comments;
     }
 
     // Delete comment
-    public function delete($id)
+    public function delete($id, Comment $comment)
     {
-        return Comment::find($id)->delete();
+        return $comment->findOrFail($id)->delete();
+    }
+
+    // Update comment
+    public function update($id, Request $request, Comment $comment)
+    {
+        return $comment->findOrFail($id)->update(['comment_body' => $request->comment_body]);
     }
 }
