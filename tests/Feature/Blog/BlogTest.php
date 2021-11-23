@@ -68,4 +68,11 @@ class BlogTest extends TestCase
                      'body'
                  ]);
     }
+
+    public function test_can_remove_blog()
+    {
+        $response = $this->delete('/api/blog/7');
+
+        $response->assertOk();
+    }
 }
