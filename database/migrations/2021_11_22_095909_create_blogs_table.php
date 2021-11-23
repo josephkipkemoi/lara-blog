@@ -15,7 +15,7 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->references('id')->on('users')->default(1);
+            $table->bigInteger('user_id')->references('id')->on('users')->default(1)->onDelete('cascade');
 
             $table->string('title');
             $table->string('author')->default('guest');
