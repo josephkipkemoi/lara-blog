@@ -26,6 +26,7 @@ Route::delete('/blog/{id}', [BlogController::class, 'delete']);
 Route::post('/comment', [CommentController::class, 'store']);
 Route::get('/comment/{id}', [CommentController::class, 'show']);
 Route::delete('/comment/{id}', [CommentController::class, 'delete']);
+Route::put('/comment/{id}',[CommentController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
