@@ -19,6 +19,7 @@ use App\Http\Controllers\BlogController;
 Route::post('/blog', [BlogController::class, 'store']);
 Route::get('/blog', [BlogController::class, 'index']);
 Route::put('/blog/{id}', [BlogController::class,'update']);
+Route::get('/blog/{id}', [BlogController::class, 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
