@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::get('/blog', [BlogController::class, 'index']);
 Route::put('/blog/{id}', [BlogController::class,'update']);
 Route::get('/blog/{id}', [BlogController::class, 'show']);
 Route::delete('/blog/{id}', [BlogController::class, 'delete']);
+
+Route::post('/comment', [CommentController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
