@@ -56,4 +56,16 @@ class BlogTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_can_get_blog_by_id()
+    {
+        $response = $this->get('/api/blog/7');
+
+        $response->assertOk()
+                 ->assertJsonStructure([
+                     'title',
+                     'author',
+                     'body'
+                 ]);
+    }
 }
