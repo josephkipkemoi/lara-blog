@@ -30,9 +30,11 @@ function BlogContainer()
                 const {author, title, body} = data;
                 return (
                     <React.Fragment key={`larablog`+key}>
-                        <h1>{title}</h1>
-                        <span>{author}</span>
-                        <p>{body}</p>
+                        <div className="container">
+                            <h1>{title}</h1>
+                            <span>{author}</span>
+                            <p>{body}</p>
+                        </div>
                     </React.Fragment>
                 )
             }): <span>loading</span>}
