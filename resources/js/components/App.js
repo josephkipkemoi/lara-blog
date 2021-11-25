@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import { store } from './Redux/store';
 
@@ -10,12 +11,21 @@ import Footer from './Footer';
 
 function App() {
     return (
-        <React.Fragment>
+        <BrowserRouter>
+            <LandingPage/>
+        </BrowserRouter>
+    );
+}
+
+function LandingPage() {
+    return (
+        <>
             <Header/>
             <Main/>
             <Footer/>
-        </React.Fragment>
-    );
+       </>
+
+    )
 }
 
 export default App;

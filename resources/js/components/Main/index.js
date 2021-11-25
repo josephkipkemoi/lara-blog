@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { getBlogPosts } from "../Redux/Reducers/RootReducer";
 
 
@@ -27,13 +27,14 @@ function BlogContainer()
         <React.Fragment>
             <h2>News</h2>
             {!!data ? data.data.map((data,key) => {
-                const {author, title, body} = data;
+                const {author, title, body,id} = data;
                 return (
                     <React.Fragment key={`larablog`+key}>
                         <div className="container">
                             <h1>{title}</h1>
                             <span>{author}</span>
                             <p>{body}</p>
+                            <Link to={`/blog/${id}`}>Read More</Link>
                         </div>
                     </React.Fragment>
                 )
