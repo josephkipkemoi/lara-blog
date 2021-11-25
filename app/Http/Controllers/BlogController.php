@@ -16,9 +16,9 @@ class BlogController extends Controller
      */
 
     //  Get resource based on user id
-    public function index(Request $request)
+    public function index()
     {
-        return Blog::where('user_id','=', $request->user_id)->paginate(5);
+        return Blog::paginate(5);
     }
 
     // Store resource to Database
