@@ -3639,11 +3639,29 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Main() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState2 = _slicedToArray(_useState, 2),
+      page = _useState2[0],
+      setPage = _useState2[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_Redux_Reducers_RootReducer__WEBPACK_IMPORTED_MODULE_2__.getBlogPosts)());
-  }, [dispatch]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BlogContainer, {})
+    dispatch((0,_Redux_Reducers_RootReducer__WEBPACK_IMPORTED_MODULE_2__.getBlogPosts)(page));
+  }, [page]);
+
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return !!state.posts ? state.posts.map(function (data) {
+      return data.payload.links;
+    }) : 0;
+  }),
+      _useSelector2 = _slicedToArray(_useSelector, 1),
+      paginate = _useSelector2[0];
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BlogContainer, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Pagination, {
+      paginate: paginate,
+      setPage: setPage
+    })]
   });
 }
 
@@ -3686,6 +3704,28 @@ function BlogContainer() {
   });
 }
 
+function Pagination(_ref) {
+  var paginate = _ref.paginate,
+      setPage = _ref.setPage;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "container",
+    children: !!paginate ? paginate.map(function (data, key) {
+      var url = data.url,
+          active = data.active,
+          label = data.label;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          onClick: function onClick() {
+            return !!Number(label) ? setPage(Number(label)) : 1;
+          },
+          className: "btn btn-primary",
+          children: label
+        }, "larablogMag" + key)
+      }, "larablogMa" + key);
+    }) : 'loading'
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/components/Redux/Reducers/RootReducer.js":
@@ -3722,7 +3762,7 @@ var getBlogPosts = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncT
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/blog?user_id=1');
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/blog?page=".concat(url));
 
           case 2:
             response = _context.sent;

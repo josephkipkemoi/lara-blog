@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogPosts } from "../Redux/Reducers/RootReducer";
@@ -8,13 +8,18 @@ export default function Main()
 {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getBlogPosts())
-    },[dispatch])
+    const [page, setPage] = useState(1);
 
-    return (
+    useEffect(() => {
+        dispatch(getBlogPosts(page))
+    },[page])
+
+    const [paginate] = useSelector(state => !!state.posts ? state.posts.map(data => data.payload.links) : 0);
+
+     return (
         <React.Fragment>
             <BlogContainer/>
+            <Pagination paginate={paginate} setPage={setPage}/>
         </React.Fragment>
     )
 }
@@ -40,5 +45,23 @@ function BlogContainer()
                 )
             }): <span>loading</span>}
         </React.Fragment>
+    )
+}
+
+function Pagination({paginate, setPage})
+{
+    return (
+        <div className="container">
+         {!!paginate ? paginate.map((data,key) => {
+             const {url,active,label} = data;
+
+              return (
+                 <React.Fragment key={`larablogMa`+key}>
+                     {/* <Link to={`blog?page=${label}`}>{label}</Link> */}
+                    <button onClick={() => !!Number(label) ? setPage(Number(label)) : 1} key={`larablogMag`+key} className="btn btn-primary">{label}</button>
+                 </React.Fragment>
+             )
+         }): 'loading'}
+        </div>
     )
 }
