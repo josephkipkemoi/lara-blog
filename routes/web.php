@@ -12,3 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/{path?}', [
+    'uses' => 'App\Http\Controllers\ReactController@show',
+    'as' => 'react',
+    'where' => ['path' => '.*']
+]);
