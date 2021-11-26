@@ -35,9 +35,9 @@ class BlogController extends Controller
     }
 
     // Get resource by id
-    public function show($id, Blog $blog, Request $request)
+    public function show($id)
     {
-        return $blog->findOrFail($id);
+        return Blog::findOrFail($id);
     }
 
     // Remove resource by ID
