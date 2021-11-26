@@ -13,6 +13,7 @@ export default function Main()
     )
 }
 
+// Container for each Blog post
 function BlogContainer()
 {
     const [post] = useSelector(state => !!state.posts ? state.posts.map(data => data.payload.data) : [])
