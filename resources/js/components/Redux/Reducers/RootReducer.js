@@ -10,15 +10,29 @@ export const getBlogPosts = createAsyncThunk(
     }
 )
 
+export const getBlogById = createAsyncThunk(
+    'blog/getBlogById',
+    async (id, thunkApi) => {
+        const response = await axios.get(`/api/blog/${id}`);
+
+        return response.data
+    }
+)
+
 export const BlogSlice = createSlice({
     name:'blog',
     initialState:{
-        posts:[]
+        posts:[],
+        postById:{}
     },
     extraReducers: (builder) => {
         builder.addCase(getBlogPosts.fulfilled, (state, data) => {
             state.posts.push(data)
-        })
+        }),
+        builder.addCase(getBlogById.fulfilled, ({postById}, {payload}) => ({
+            ...postById,
+            postById: payload
+        }))
     }
 })
 
