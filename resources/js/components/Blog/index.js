@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 
-import { getBlogById } from "../Redux/Reducers/RootReducer";
-
-export default function Blog({id}) {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getBlogById(id))
-    },[dispatch])
+export default function Blog({title, body, author}) {
 
     return (
         <>
-             <h1>Blog</h1>
+            <h1>{title}</h1>
+            <span>{author}</span>
+            <p>{body}</p>
         </>
     )
 }
