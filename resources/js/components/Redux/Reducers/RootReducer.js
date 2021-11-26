@@ -23,16 +23,15 @@ export const BlogSlice = createSlice({
     name:'blog',
     initialState:{
         posts:[],
-        postById:{}
+        postById:[]
     },
     extraReducers: (builder) => {
         builder.addCase(getBlogPosts.fulfilled, (state, data) => {
-            state.posts.push(data)
+            state.posts[0] = data
         }),
-        builder.addCase(getBlogById.fulfilled, ({postById}, {payload}) => ({
-            ...postById,
-            postById: payload
-        }))
+        builder.addCase(getBlogById.fulfilled, (state, data) => {
+            state.postById[0] = data
+        })
     }
 })
 

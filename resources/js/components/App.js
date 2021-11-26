@@ -13,7 +13,6 @@ import Blog from './Blog';
 import Footer from './Footer';
 
 function App() {
-
     return (
       <>
             <BrowserRouter>
@@ -26,13 +25,15 @@ function App() {
     );
 }
 
-function LandingPage(props) {
+function LandingPage() {
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getBlogPosts(1))
-    },[dispatch])
+     dispatch(getBlogPosts(1))
+
+     },[dispatch])
+
 
     return (
         <>
@@ -51,12 +52,17 @@ function BlogPage(props) {
         dispatch(getBlogById(props.match.params.id))
     },[dispatch])
 
-    const {title,body, author} = useSelector(state => state.postById);
+    const post = useSelector(state => state.postById);
 
     return (
         <>
             <Header/>
-            <Blog title={title} body={body} author={author}/>
+            {post.map((data,key) => {
+                const {title, author, body} = data.payload
+                return (
+                    <Blog key={'la'+key} title={title} body={body} author={author}/>
+                  )
+            })}
             <Footer/>
         </>
     )

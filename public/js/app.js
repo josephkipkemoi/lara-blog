@@ -3553,7 +3553,7 @@ function App() {
   });
 }
 
-function LandingPage(props) {
+function LandingPage() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_Redux_Reducers_RootReducer__WEBPACK_IMPORTED_MODULE_4__.getBlogPosts)(1));
@@ -3568,19 +3568,20 @@ function BlogPage(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_Redux_Reducers_RootReducer__WEBPACK_IMPORTED_MODULE_4__.getBlogById)(props.match.params.id));
   }, [dispatch]);
-
-  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+  var post = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.postById;
-  }),
-      title = _useSelector.title,
-      body = _useSelector.body,
-      author = _useSelector.author;
-
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Blog__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      title: title,
-      body: body,
-      author: author
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], {}), post.map(function (data, key) {
+      var _data$payload = data.payload,
+          title = _data$payload.title,
+          author = _data$payload.author,
+          body = _data$payload.body;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Blog__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        title: title,
+        body: body,
+        author: author
+      }, 'la' + key);
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
   });
 }
@@ -3795,12 +3796,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3865,17 +3860,13 @@ var BlogSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
   name: 'blog',
   initialState: {
     posts: [],
-    postById: {}
+    postById: []
   },
   extraReducers: function extraReducers(builder) {
     builder.addCase(getBlogPosts.fulfilled, function (state, data) {
-      state.posts.push(data);
-    }), builder.addCase(getBlogById.fulfilled, function (_ref3, _ref4) {
-      var postById = _ref3.postById;
-      var payload = _ref4.payload;
-      return _objectSpread(_objectSpread({}, postById), {}, {
-        postById: payload
-      });
+      state.posts[0] = data;
+    }), builder.addCase(getBlogById.fulfilled, function (state, data) {
+      state.postById[0] = data;
     });
   }
 });
