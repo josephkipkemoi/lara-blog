@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Blog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -15,7 +16,7 @@ class CommentFactory extends Factory
     {
         return [
             //
-            'comment_id' => 1,
+            'blog_id' => Blog::factory()->create()->id,
             'comment_body' => $this->faker->text()
         ];
     }

@@ -17,8 +17,8 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::resource('/blog', BlogController::class);
-Route::resource('/comment', CommentController::class);
+Route::resource('/blogs', BlogController::class);
+Route::resource('/blogs/{blog}/comments', CommentController::class);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -2,33 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Blog;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    // post comment
-    public function store(Request $request, Comment $comment)
+    public function index(Blog $blog)
     {
-        return $comment->validate($request);
+        return $blog->comments;
+    }
+
+    // post comment
+    public function store(CreateCommentRequest $request,Blog $blog)
+    {
+        return $blog->comments()->create($request->validated());
     }
 
     // get comment related to blog
-    public function show($id, Blog $blog)
+    public function show(Blog $blog, Comment $comment)
     {
-        return $blog->findOrFail($id)->comments;
+        return $comment;
     }
 
     // Delete comment
-    public function delete($id, Comment $comment)
+    public function destroy(Blog $blog, Comment $comment)
     {
-        return $comment->findOrFail($id)->delete();
+        return $comment->delete();
     }
 
     // Update comment
-    public function update($id, Request $request, Comment $comment)
+    public function update(UpdateCommentRequest $request,Blog $blog,Comment $comment)
     {
-        return $comment->findOrFail($id)->update(['comment_body' => $request->comment_body]);
+        return tap($comment)->update($request->validated())->toArray();
     }
 }
