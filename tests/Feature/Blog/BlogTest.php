@@ -23,9 +23,9 @@ class BlogTest extends TestCase
 
     public function test_can_post_blog()
     {
-        $post = Blog::factory()->raw();
+        $blog = Blog::factory()->raw();
 
-        $response = $this->post('/api/blogs',$post);
+        $response = $this->post('/api/blogs',$blog);
 
         $response->assertCreated()
                  ->assertJson(fn(AssertableJson $json) => (
@@ -38,7 +38,9 @@ class BlogTest extends TestCase
 
     public function test_can_get_blog()
     {
-        $response = $this->get('/api/blog?user_id=1');
+
+
+        $response = $this->get('/api/blog/user_id=1');
 
         $response->assertOk()
                  ->assertJsonStructure([
