@@ -36,11 +36,11 @@ class BlogTest extends TestCase
     }
 
 
-    public function test_can_get_blog()
+    public function test_can_get_blogs()
     {
+        $blog = Blog::factory()->create();
 
-
-        $response = $this->get('/api/blog/user_id=1');
+        $response = $this->get("/api/blogs");
 
         $response->assertOk()
                  ->assertJsonStructure([
@@ -49,16 +49,27 @@ class BlogTest extends TestCase
                  ]);
     }
 
-    public function test_can_edit_and_update_blog()
+    public function test_can_update_blog()
     {
-        $response = $this->put('/api/blog/1?blog_id=7&title=new Title&body=new Body');
+        $blog = Blog::factory()->create();
+
+        $response = $this->patch("/api/blogs/{$blog->id}", [
+            'title' => 'updated Title',
+            'body' => 'updated Body',
+            'author' => 'Greek Thompson'
+        ]);
 
         $response->assertOk();
+
+        $this->assertEquals('updated Title', $blog->fresh()->title);
     }
+
 
     public function test_can_get_blog_by_id()
     {
-        $response = $this->get('/api/blog/7');
+        $blog = Blog::factory()->create();
+
+        $response = $this->get("/api/blogs/{$blog->id}");
 
         $response->assertOk()
                  ->assertJsonStructure([
@@ -70,8 +81,12 @@ class BlogTest extends TestCase
 
     public function test_can_remove_blog()
     {
-        $response = $this->delete('/api/blog/7');
+        $blog = Blog::factory()->create();
+
+        $response = $this->delete("/api/blogs/{$blog->id}");
 
         $response->assertOk();
+
+        $this->assertDeleted($blog);
     }
 }

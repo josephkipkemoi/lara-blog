@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBlogRequest;
+use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,9 @@ class BlogController extends Controller
     }
 
     // Update resource by id
-    public function update(Request $request, $id)
+    public function update(Blog $blog,UpdateBlogRequest $request)
     {
-        return Blog::where('user_id', $id)->where('id', $request->blog_id)->update(['title' => $request->title,'body' => $request->body]);
+        return tap($blog)->update($request->validated());
     }
 
     // Get resource by id
@@ -42,15 +43,16 @@ class BlogController extends Controller
     }
 
     // Remove resource by ID
-    public function delete($id, Blog $blog)
+    public function destroy(Blog $blog)
     {
-        $post = $blog->find($id);
+        // $post = $blog->find($id);
 
-        foreach($post->comments as $comment)
-        {
-            $comment->delete();
-        }
+        // foreach($post->comments as $comment)
+        // {
+        //     $comment->delete();
+        // }
 
-        return $post->delete();
+        // return $post->delete();
+        return $blog->delete();
     }
 }
