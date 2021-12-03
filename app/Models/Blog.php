@@ -15,15 +15,6 @@ class Blog extends Model
 
     protected $hidden = ['updated_at','created_at','user_id'];
 
-    public function validate($request)
-    {
-        // validate request
-        $request->validate(['title' => 'required','body' => 'required']);
-
-        // store request values to database
-        return Blog::create($request->all());
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);
