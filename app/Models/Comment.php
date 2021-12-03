@@ -15,15 +15,6 @@ class Comment extends Model
 
     protected $hidden = ['created_at','updated_at','comment_id'];
 
-    public function validate($request)
-    {
-        // Validate request
-        $request->validate();
-
-        // Store to DB
-        return Comment::create(['comment_id' => $request->comment_id,'comment_body' => $request->comment_body]);
-    }
-
     public function blog()
     {
         return $this->belongsTo(Blog::class);
