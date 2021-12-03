@@ -25,7 +25,9 @@ class CreateBlogRequest extends FormRequest
     {
         return [
             //
-            'comment_body' => ['required','string']
+            'author' => ['string'],
+            'title' => ['required','string'],
+            'body' => ['required', 'string']
         ];
     }
 }
