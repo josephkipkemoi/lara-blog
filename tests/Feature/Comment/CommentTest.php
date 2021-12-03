@@ -18,7 +18,7 @@ class CommentTest extends TestCase
     {
         $blog = Blog::factory()->create();
 
-        $response = $this->post("/api/blogs/{$blog->id}/comments",[
+        $response = $this->post("api/v1/blogs/{$blog->id}/comments",[
             'comment_body' => $this->faker->text()
         ]);
 
@@ -32,7 +32,7 @@ class CommentTest extends TestCase
                         ->create();
 
 
-        $response = $this->get("/api/blogs/{$comment->blog_id}/comments/{$comment->id}");
+        $response = $this->get("api/v1/blogs/{$comment->blog_id}/comments/{$comment->id}");
 
         $response->assertOk();
     }
@@ -44,7 +44,7 @@ class CommentTest extends TestCase
                         ->create();
 
 
-        $response = $this->delete("/api/blogs/{$comment->blog_id}/comments/{$comment->id}");
+        $response = $this->delete("api/v1/blogs/{$comment->blog_id}/comments/{$comment->id}");
 
         $response->assertOk();
 
@@ -58,7 +58,7 @@ class CommentTest extends TestCase
                         ->create();
 
 
-        $response = $this->patch("/api/blogs/{$comment->blog_id}/comments/{$comment->id}", [
+        $response = $this->patch("api/v1/blogs/{$comment->blog_id}/comments/{$comment->id}", [
             'comment_body' => 'updated comment body'
         ]);
 
