@@ -7,11 +7,12 @@ namespace Tests\Feature;
 use App\Models\Blog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class BlogTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
     use WithFaker;
     /**
      * A basic feature test example.
@@ -24,16 +25,14 @@ class BlogTest extends TestCase
     {
         $post = Blog::factory()->raw();
 
-        dd($post);
-
-        $response = $this->post('/api/blog',$post);
+        $response = $this->post('/api/blogs',$post);
 
         $response->assertCreated()
-                 ->assertJsonStructure([
-                     'title',
-                     'author',
-                     'body'
-                 ]);
+                 ->assertJson(fn(AssertableJson $json) => (
+                     $json->has('title')
+                          ->whereType('title','string')
+                          ->etc()
+                 ));
     }
 
 
