@@ -3851,7 +3851,7 @@ var getBlogPosts = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncT
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/blog?page=".concat(url));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/v1/blogs");
 
           case 2:
             response = _context.sent;
@@ -3877,7 +3877,7 @@ var getBlogById = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/blog/".concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/v1/blogs/".concat(id));
 
           case 2:
             response = _context2.sent;
