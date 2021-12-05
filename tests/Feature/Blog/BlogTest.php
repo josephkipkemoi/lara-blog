@@ -25,7 +25,7 @@ class BlogTest extends TestCase
     {
         $blog = Blog::factory()->raw();
 
-        $response = $this->post('/api/blogs',$blog);
+        $response = $this->post('api/v1/blogs',$blog);
 
         $response->assertCreated()
                  ->assertJson(fn(AssertableJson $json) => (
@@ -40,7 +40,7 @@ class BlogTest extends TestCase
     {
         $blog = Blog::factory()->create();
 
-        $response = $this->get("/api/blogs");
+        $response = $this->get("api/v1/blogs");
 
         $response->assertOk()
                  ->assertJsonStructure([
@@ -53,7 +53,7 @@ class BlogTest extends TestCase
     {
         $blog = Blog::factory()->create();
 
-        $response = $this->patch("/api/blogs/{$blog->id}", [
+        $response = $this->patch("api/v1/blogs/{$blog->id}", [
             'title' => 'updated Title',
             'body' => 'updated Body',
             'author' => 'Greek Thompson'
@@ -69,7 +69,7 @@ class BlogTest extends TestCase
     {
         $blog = Blog::factory()->create();
 
-        $response = $this->get("/api/blogs/{$blog->id}");
+        $response = $this->get("api/v1/blogs/{$blog->id}");
 
         $response->assertOk()
                  ->assertJsonStructure([
@@ -83,7 +83,7 @@ class BlogTest extends TestCase
     {
         $blog = Blog::factory()->create();
 
-        $response = $this->delete("/api/blogs/{$blog->id}");
+        $response = $this->delete("api/v1/blogs/{$blog->id}");
 
         $response->assertOk();
 

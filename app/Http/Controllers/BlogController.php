@@ -45,14 +45,6 @@ class BlogController extends Controller
     // Remove resource by ID
     public function destroy(Blog $blog)
     {
-        // $post = $blog->find($id);
-
-        // foreach($post->comments as $comment)
-        // {
-        //     $comment->delete();
-        // }
-
-        // return $post->delete();
         return $blog->delete();
     }
 }
