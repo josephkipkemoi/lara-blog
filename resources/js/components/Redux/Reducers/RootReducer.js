@@ -4,7 +4,7 @@ import axios from "axios";
 export const getBlogPosts = createAsyncThunk(
     'blog/getBlogPosts',
     async (url, thunkApi) => {
-        const response = await axios.get(`/api/blog?page=${url}`);
+        const response = await axios.get(`/api/v1/blogs`);
 
         return response.data
     }
@@ -13,7 +13,7 @@ export const getBlogPosts = createAsyncThunk(
 export const getBlogById = createAsyncThunk(
     'blog/getBlogById',
     async (id, thunkApi) => {
-        const response = await axios.get(`/api/blog/${id}`);
+        const response = await axios.get(`/api/v1/blogs/${id}`);
 
         return response.data
     }
