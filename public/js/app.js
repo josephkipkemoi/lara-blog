@@ -3843,7 +3843,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var getBlogPosts = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('blog/getBlogPosts', /*#__PURE__*/function () {
+var getBlogPosts = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('blogs/getBlogPosts', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url, thunkApi) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -3869,7 +3869,7 @@ var getBlogPosts = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncT
     return _ref.apply(this, arguments);
   };
 }());
-var getBlogById = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('blog/getBlogById', /*#__PURE__*/function () {
+var getBlogById = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('blogs/getBlogById', /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id, thunkApi) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -3896,7 +3896,7 @@ var getBlogById = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
   };
 }());
 var BlogSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
-  name: 'blog',
+  name: 'blogs',
   initialState: {
     posts: [],
     postById: []

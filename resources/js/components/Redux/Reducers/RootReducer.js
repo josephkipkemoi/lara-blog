@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getBlogPosts = createAsyncThunk(
-    'blog/getBlogPosts',
+    'blogs/getBlogPosts',
     async (url, thunkApi) => {
         const response = await axios.get(`/api/v1/blogs`);
 
@@ -11,7 +11,7 @@ export const getBlogPosts = createAsyncThunk(
 )
 
 export const getBlogById = createAsyncThunk(
-    'blog/getBlogById',
+    'blogs/getBlogById',
     async (id, thunkApi) => {
         const response = await axios.get(`/api/v1/blogs/${id}`);
 
@@ -20,7 +20,7 @@ export const getBlogById = createAsyncThunk(
 )
 
 export const BlogSlice = createSlice({
-    name:'blog',
+    name:'blogs',
     initialState:{
         posts:[],
         postById:[]
