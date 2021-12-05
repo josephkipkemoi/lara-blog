@@ -24,7 +24,7 @@ function Body({title,author,body}) {
 function AddComment() {
     return (
         <div className="container">
-            <label>Add Comment</label>
+            <label>Add Comment:</label>
             <textarea type="text" placeholder="Comment"/>{` `}
             <input type="button" value="Submit" className="btn btn-primary"/>
         </div>
