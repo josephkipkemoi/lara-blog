@@ -5,7 +5,7 @@ import { BrowserRouter , Switch, Route} from 'react-router-dom';
 
 import { store } from './Redux/store';
 
-import { getBlogById , getBlogPosts} from './Redux/Reducers/RootReducer';
+import { getBlogById , getBlogComments, getBlogPosts} from './Redux/Reducers/RootReducer';
 
 import Header from './Header';
 import Main from './Main';
@@ -50,9 +50,11 @@ function BlogPage(props) {
 
     useEffect(() => {
         dispatch(getBlogById(props.match.params.id))
+        dispatch(getBlogComments(props.match.params.id))
     },[dispatch])
 
     const post = useSelector(state => state.postById);
+    const comments = useSelector(state => state.comments);
 
     return (
         <>
@@ -60,7 +62,7 @@ function BlogPage(props) {
             {post.map((data,key) => {
                 const {title, author, body} = data.payload
                 return (
-                    <Blog key={'la'+key} title={title} body={body} author={author}/>
+                    <Blog key={'la'+key} title={title} body={body} author={author} comments={comments}/>
                   )
             })}
             <Footer/>
