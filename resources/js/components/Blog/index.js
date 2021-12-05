@@ -1,12 +1,15 @@
 import React from "react";
 
-export default function Blog({title, body, author}) {
+export default function Blog({title, body, author,comments}) {
 
     return (
         <>
             <Body title={title} body={body} author={author}/>
             <AddComment/>
-            <Comments/>
+            {comments.map((data,key) => {
+               const {payload} = data;
+               return <Comments key={`larablogcomment${key}`} comment={payload}/>
+            })}
         </>
     )
 }
@@ -31,10 +34,14 @@ function AddComment() {
     )
 }
 
-function Comments() {
+function Comments({comment}) {
     return (
         <div className="container">
-            <span>Comments</span>
+            <span>Comments:</span>
+             {comment.map((data,key) => {
+                 const {comment_body} = data;
+                 return <p key={`larablogcommentp${key}`}>{comment_body}</p>
+             })}
         </div>
     )
 }
