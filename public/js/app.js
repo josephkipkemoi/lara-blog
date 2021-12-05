@@ -3816,17 +3816,26 @@ function BlogContainer() {
 }
 
 function Paginate() {
+  var paginate = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.posts;
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_js_pagination__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      linkClass: "btn btn-secondary",
-      totalItemsCount: 10,
-      itemsCountPerPage: 5,
-      pageRangeDisplayed: 5,
-      activePage: 1,
-      onChange: function onChange() {
-        return console.log('d');
-      }
+    children: paginate.map(function (data, key) {
+      var _data$payload = data.payload,
+          current_page = _data$payload.current_page,
+          total = _data$payload.total,
+          per_page = _data$payload.per_page;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_js_pagination__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        linkClass: "btn btn-secondary",
+        totalItemsCount: total,
+        itemsCountPerPage: per_page,
+        pageRangeDisplayed: per_page,
+        activePage: current_page,
+        onChange: function onChange() {
+          return console.log('d');
+        }
+      }, "paginate".concat(key));
     })
   });
 }

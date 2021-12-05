@@ -40,15 +40,22 @@ function BlogContainer()
 
 function Paginate()
 {
+    const paginate = useSelector(state => state.posts);
+
     return (
         <div className="container">
-             <Pagination
-              linkClass="btn btn-secondary"
-              totalItemsCount={10}
-              itemsCountPerPage={5}
-              pageRangeDisplayed={5}
-              activePage={1}
-              onChange={() => console.log('d')}/>
+          {paginate.map((data,key) => {
+              const {current_page,total,per_page} = data.payload;
+              return <Pagination
+                        key={`paginate${key}`}
+                        linkClass="btn btn-secondary"
+                        totalItemsCount={total}
+                        itemsCountPerPage={per_page}
+                        pageRangeDisplayed={per_page}
+                        activePage={current_page}
+                        onChange={() => console.log('d')}
+                    />
+          })}
         </div>
     )
 }
