@@ -25,6 +25,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.6.2",
         "react-js-pagination": "^3.0.3",
         "react-redux": "^7.2.6",
         "react-router": "^6.0.2",
