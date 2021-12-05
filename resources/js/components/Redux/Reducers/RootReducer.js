@@ -19,11 +19,21 @@ export const getBlogById = createAsyncThunk(
     }
 )
 
+export const getBlogComments = createAsyncThunk(
+    'blogs/getBlogComments',
+    async (id, thunkApi) => {
+        const response = await axios.get(`/api/v1/blogs/${id}/comments`);
+
+        return response.data
+    }
+)
+
 export const BlogSlice = createSlice({
     name:'blogs',
     initialState:{
         posts:[],
-        postById:[]
+        postById:[],
+        comments:[]
     },
     extraReducers: (builder) => {
         builder.addCase(getBlogPosts.fulfilled, (state, data) => {
@@ -31,6 +41,9 @@ export const BlogSlice = createSlice({
         }),
         builder.addCase(getBlogById.fulfilled, (state, data) => {
             state.postById[0] = data
+        }),
+        builder.addCase(getBlogComments.fulfilled, (state, data) => {
+            state.comments[0] = data
         })
     }
 })

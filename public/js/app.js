@@ -3827,6 +3827,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getBlogPosts": () => (/* binding */ getBlogPosts),
 /* harmony export */   "getBlogById": () => (/* binding */ getBlogById),
+/* harmony export */   "getBlogComments": () => (/* binding */ getBlogComments),
 /* harmony export */   "BlogSlice": () => (/* binding */ BlogSlice),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
@@ -3895,17 +3896,46 @@ var getBlogById = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
     return _ref2.apply(this, arguments);
   };
 }());
+var getBlogComments = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('blogs/getBlogComments', /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(id, thunkApi) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/v1/blogs/".concat(id, "/comments"));
+
+          case 2:
+            response = _context3.sent;
+            return _context3.abrupt("return", response.data);
+
+          case 4:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function (_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}());
 var BlogSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
   name: 'blogs',
   initialState: {
     posts: [],
-    postById: []
+    postById: [],
+    comments: []
   },
   extraReducers: function extraReducers(builder) {
     builder.addCase(getBlogPosts.fulfilled, function (state, data) {
       state.posts[0] = data;
     }), builder.addCase(getBlogById.fulfilled, function (state, data) {
       state.postById[0] = data;
+    }), builder.addCase(getBlogComments.fulfilled, function (state, data) {
+      state.comments[0] = data;
     });
   }
 });
