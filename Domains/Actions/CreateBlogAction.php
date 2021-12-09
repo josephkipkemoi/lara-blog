@@ -1,9 +1,10 @@
 <?php
 
+use Blog;
 
 class CreateBlogAction {
 
-    public function __invoke(BlogData $blogData): Blog
+    public function __invoke(BlogData $blogData)
     {
 
     }
