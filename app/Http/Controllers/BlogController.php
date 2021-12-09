@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
-use Illuminate\Http\Request;
+ use Illuminate\Http\Request;
 
-class BlogController extends Controller
+ class BlogController extends Controller
 {
 
     /**
@@ -27,7 +27,7 @@ class BlogController extends Controller
     public function store(Blog $blog, CreateBlogRequest $request)
     {
         //
-        return $blog->create($request->validated());
+         return $blog->create($request->validated());
     }
 
     // Update resource by id

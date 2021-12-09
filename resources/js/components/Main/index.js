@@ -1,7 +1,8 @@
 import React, { useState }  from "react";
 import Pagination from "react-js-pagination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getBlogPosts } from "../Redux/Reducers/RootReducer";
 
 export default function Main()
 {
@@ -41,11 +42,13 @@ function BlogContainer()
 function Paginate()
 {
     const paginate = useSelector(state => state.posts);
+    const dispatch = useDispatch();
 
     return (
         <div className="container">
           {paginate.map((data,key) => {
               const {current_page,total,per_page} = data.payload;
+              console.log(data.payload)
               return <Pagination
                         key={`paginate${key}`}
                         linkClass="btn btn-secondary"
@@ -53,7 +56,9 @@ function Paginate()
                         itemsCountPerPage={per_page}
                         pageRangeDisplayed={per_page}
                         activePage={current_page}
-                        onChange={() => console.log('d')}
+                        onChange={() => {
+                            dispatch(getBlogPosts())
+                        }}
                     />
           })}
         </div>
