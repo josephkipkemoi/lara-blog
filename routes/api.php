@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ use App\Http\Controllers\CommentController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/register', [RegisteredUserController::class, 'store'])->middleware('guest');
 
 Route::apiResource('v1/blogs', BlogController::class);
 Route::apiResource('v1/blogs/{blog}/comments', CommentController::class);
