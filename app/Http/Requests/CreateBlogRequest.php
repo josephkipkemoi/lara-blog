@@ -27,7 +27,8 @@ class CreateBlogRequest extends FormRequest
             //
             'author' => ['string'],
             'title' => ['required','string'],
-            'body' => ['required', 'string']
+            'body' => ['required', 'string'],
+            'user_id' => ['required']
         ];
     }
 }
