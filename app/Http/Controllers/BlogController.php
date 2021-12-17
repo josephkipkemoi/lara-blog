@@ -26,10 +26,10 @@ use Illuminate\Http\Request;
     }
 
     // Store resource to Database
-    public function store(User $user,CreateBlogRequest $request)
+    public function store(Blog $blog,CreateBlogRequest $request)
     {
         //
-        return $user->blog()->create($request->validated());
+        return $blog->create($request->validated());
     }
 
     // Update resource by id
