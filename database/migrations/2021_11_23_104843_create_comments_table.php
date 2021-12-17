@@ -23,7 +23,8 @@ class CreateCommentsTable extends Migration
             $table->foreign('blog_id')
                     ->references('id')
                     ->on('blogs')
-                    ->cascadeOnDelete();
+                    ->cascadeOnDelete()
+                    ->cascadeOnUpdate();
         });
     }
 
