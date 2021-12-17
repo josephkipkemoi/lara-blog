@@ -9,11 +9,11 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','body','author'];
+    protected $fillable = ['title','body','author','user_id'];
 
     protected $casts = ['title' => 'string','author' => 'string','body' => 'string'];
 
-    protected $hidden = ['updated_at','created_at','user_id'];
+    protected $hidden = ['updated_at','created_at'];
 
     public function comments()
     {
