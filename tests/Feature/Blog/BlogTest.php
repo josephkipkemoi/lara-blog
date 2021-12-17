@@ -39,7 +39,8 @@ class BlogTest extends TestCase
 
     public function test_can_get_blogs()
     {
-        $blog = Blog::factory()->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
         $response = $this->get("api/v1/blogs");
 
@@ -52,7 +53,8 @@ class BlogTest extends TestCase
 
     public function test_can_update_blog()
     {
-        $blog = Blog::factory()->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
         $response = $this->patch("api/v1/blogs/{$blog->id}", [
             'title' => 'updated Title',
@@ -68,7 +70,8 @@ class BlogTest extends TestCase
 
     public function test_can_get_blog_by_id()
     {
-        $blog = Blog::factory()->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
         $response = $this->get("api/v1/blogs/{$blog->id}");
 
@@ -82,7 +85,8 @@ class BlogTest extends TestCase
 
     public function test_can_remove_blog()
     {
-        $blog = Blog::factory()->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
         $response = $this->delete("api/v1/blogs/{$blog->id}");
 
