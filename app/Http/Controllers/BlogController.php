@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
- use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Http\Request;
 
  class BlogController extends Controller
 {
@@ -18,16 +19,17 @@ use App\Models\Blog;
      */
 
     //  Get resource based on user id
-    public function index()
+    public function index(Blog $blog)
     {
-        return Blog::paginate(5);
+        // return $blog->user()->paginate(5);
+        return  Blog::paginate(5);
     }
 
     // Store resource to Database
-    public function store(Blog $blog, CreateBlogRequest $request)
+    public function store(User $user,CreateBlogRequest $request)
     {
         //
-         return $blog->create($request->validated());
+        return $user->blog()->create($request->validated());
     }
 
     // Update resource by id
