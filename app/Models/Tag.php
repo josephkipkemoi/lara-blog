@@ -15,5 +15,8 @@ class Tag extends Model
 
     protected $hidden = ['updated_at','created_at'];
 
-
+    public function blog()
+    {
+        return $this->hasMany(Blog::class,'id','blog_id');
+    }
 }
