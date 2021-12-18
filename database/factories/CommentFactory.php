@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -17,7 +18,8 @@ class CommentFactory extends Factory
         return [
             //
             'blog_id' => Blog::factory()->create()->id,
-            'comment_body' => $this->faker->text()
+            'comment_body' => $this->faker->text(),
+            'user_id' => User::factory()->create()->id
         ];
     }
 }
