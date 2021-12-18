@@ -25,6 +25,13 @@ class CreateCommentsTable extends Migration
                     ->on('blogs')
                     ->cascadeOnDelete()
                     ->cascadeOnUpdate();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->cascadeOnDelete()
+                  ->cascadeOnUpdate();
         });
     }
 
