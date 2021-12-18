@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\CommentController;
 
 Route::apiResource('v1/blogs', BlogController::class);
 Route::apiResource('v1/blogs/{blog}/comments', CommentController::class);
-
+Route::post('v1/tags', TagController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
