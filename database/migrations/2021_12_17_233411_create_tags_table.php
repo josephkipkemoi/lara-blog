@@ -16,13 +16,13 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('tag');
+            $table->timestamps();
 
             $table->unsignedBigInteger('blog_id');
             $table->foreign('blog_id')
                   ->references('id')
                   ->on('blogs')
                   ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
