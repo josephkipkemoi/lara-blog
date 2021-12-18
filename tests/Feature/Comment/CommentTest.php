@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Blog;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
@@ -16,10 +16,13 @@ class CommentTest extends TestCase
 
     public function test_can_post_comment()
     {
-        $blog = Blog::factory()->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
         $response = $this->post("api/v1/blogs/{$blog->id}/comments",[
-            'comment_body' => $this->faker->text()
+            'blog_id' => $blog->id,
+            'comment_body' => $this->faker->text(),
+            'user_id' => $user->id
         ]);
 
         $response->assertStatus(201);
@@ -27,10 +30,14 @@ class CommentTest extends TestCase
 
     public function test_can_get_comment()
     {
-        $comment = Comment::factory()
-                        ->for(Blog::factory(),'blog')
-                        ->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
+        $comment = $blog->comments()->create([
+            'comment_body' => 'some comment body',
+            'user_id' => $user->id,
+            'blog_id' => $blog->id
+        ]);
 
         $response = $this->get("api/v1/blogs/{$comment->blog_id}/comments/{$comment->id}");
 
@@ -39,10 +46,14 @@ class CommentTest extends TestCase
 
     public function test_can_delete_comment()
     {
-        $comment = Comment::factory()
-                        ->for(Blog::factory(),'blog')
-                        ->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
 
+        $comment = $blog->comments()->create([
+            'comment_body' => 'some comment',
+            'user_id' => $user->id,
+            'blog_id' => $blog->id
+        ]);
 
         $response = $this->delete("api/v1/blogs/{$comment->blog_id}/comments/{$comment->id}");
 
@@ -53,18 +64,21 @@ class CommentTest extends TestCase
 
     public function test_can_update_comment()
     {
-        $comment = Comment::factory()
-                        ->for(Blog::factory(),'blog')
-                        ->create();
+        $user = User::factory()->create();
+        $blog = Blog::factory()->for($user)->create();
+
+        $comment = $blog->comments()->create([
+            'comment_body' => 'some comment',
+            'user_id' => $user->id,
+            'blog_id' => $blog->id
+        ]);
 
 
         $response = $this->patch("api/v1/blogs/{$comment->blog_id}/comments/{$comment->id}", [
             'comment_body' => 'updated comment body'
         ]);
 
-        // dd($response);
         $response->assertOk();
         $this->assertEquals('updated comment body',$comment->fresh()->comment_body);
-
     }
 }
