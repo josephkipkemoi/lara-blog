@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['comment_id','comment_body'];
+    protected $fillable = ['comment_id','comment_body','user_id','blog_id'];
 
     protected $casts = ['comment_id' => 'integer','comment_body' => 'string'];
 
