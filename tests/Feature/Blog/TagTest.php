@@ -7,7 +7,6 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class TagTest extends TestCase
@@ -19,39 +18,50 @@ class TagTest extends TestCase
      *
      * @return void
      */
-    public function test_can_post_tags_with_blog()
+    public function test_can_post_tag()
     {
-        $user = User::factory()->create();
-        $blog = Blog::factory()->for($user)->create();
-
+        // User adds tag
         $response = $this->post('api/v1/tags',[
-            'tag' => 'laravel',
-            'blog_id' => $blog->id
+            'tag' => 'laravel'
         ]);
 
+        // Assert tag has been created
         $response->assertStatus(201);
     }
 
-    public function test_can_get_tags_with_post()
+    public function test_can_get_tags_with_blog_post()
     {
+        // Create user who creates blog post
         $user = User::factory()->create();
         $blog = Blog::factory()->for($user)->create();
 
-        $tag = Tag::factory()->count(5)->create(['blog_id' => $blog->id]);
+        // User adds tags to blog post
+        $tag = Tag::factory()->create();
+        $tag->blogs()->attach($blog);
+
+        // Given the blog id, get all tags associated to the blog
         $response = $this->get("api/v1/tags/{$blog->id}");
 
-        $response->assertOk();
-        // assert blog post has five tags
-        $response->assertJsonCount(5);
+        // response 200 and assert blog post has one tag
+        $response->assertOk()
+                 ->assertJsonCount(1);
     }
 
     public function test_can_get_posts_with_tag()
     {
+        // Create user who creates the blog post
         $user = User::factory()->create();
         $blog = Blog::factory()->for($user)->create();
 
-        $tag = Tag::factory()->create(['blog_id' => $blog->id]);
-        dd($tag);
-        $response = $this->get("api/v1/tags?tag_id={$blog->id}");
-    }
+        // Create tag and atttach to the post
+        $tag = Tag::factory()->create();
+        $blog->tags()->attach($tag);
+
+        // Given the tag_id get all blogs associated with the tag name
+        $response = $this->get("api/v1/tags?tag_id={$tag->id}");
+
+        // Response 200 and one blog post return for given tag
+        $response->assertOk()
+                 ->assertJsonCount(1);
+     }
 }
