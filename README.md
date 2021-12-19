@@ -100,7 +100,7 @@ Setting up project in development mode:
 </table>
 
 <table>
-<h2>Blog post(s) tag(s)</h2>
+<h2>Tag(s)</h2>
 <tr>
     <th>METHOD</th>
     <th>END POINT</th>
