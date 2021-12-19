@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BlogFactory extends Factory
@@ -19,7 +20,8 @@ class BlogFactory extends Factory
             //
             'title' => $this->faker->title(),
             'author' => $this->faker->name(),
-            'body' => $this->faker->text()
+            'body' => $this->faker->text(),
+            'user_id' => User::factory()->create()->id
         ];
 
     }
