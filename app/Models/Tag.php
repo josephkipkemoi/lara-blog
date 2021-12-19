@@ -9,14 +9,14 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tag','blog_id'];
+    protected $fillable = ['tag'];
 
     protected $casts = ['tag' => 'string'];
 
     protected $hidden = ['updated_at','created_at'];
 
-    public function blog()
+    public function blogs()
     {
-        return $this->hasMany(Blog::class,'id','blog_id');
+        return $this->belongsToMany(Blog::class,'blog_tags','tag_id','blog_id');
     }
 }
