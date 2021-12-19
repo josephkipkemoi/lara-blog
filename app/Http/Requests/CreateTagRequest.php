@@ -25,8 +25,7 @@ class CreateTagRequest extends FormRequest
     {
         return [
             //
-            'tag' => ['string'],
-            'blog_id' => ['required']
+            'tag' => ['string']
         ];
     }
 }
