@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Blog;
 use App\Models\Comment;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class BlogSeeder extends Seeder
@@ -16,9 +18,16 @@ class BlogSeeder extends Seeder
     public function run()
     {
         //
-        Blog::factory()
-                ->count(5)
+        // create blog from user in factory
+      $blog =  Blog::factory()
                 ->has(Comment::factory()->count(4))
                 ->create();
+        // Create tag to attach to post
+      $tag1 = Tag::factory()->create();
+
+      // attach tags to blog post
+      $tag1->blogs()->attach($blog);
+      // attach blog post to tag
+      $blog->tags()->attach($tag1);
     }
 }
