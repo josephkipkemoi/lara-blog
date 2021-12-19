@@ -15,4 +15,8 @@ class Category extends Model
 
     protected $hidden = ['updated_at','created_at'];
 
+    public function blog()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
 }
