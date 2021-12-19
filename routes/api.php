@@ -26,9 +26,10 @@ Route::apiResource('v1/blogs/{blog}/comments', CommentController::class);
 
 Route::post('v1/tags', TagController::class);
 Route::get('v1/tags', [TagController::class,'index']);
-Route::get('v1/tags/{id}', [TagController::class,'show']);
+Route::get('v1/tags/{tag}', [TagController::class,'show']);
 
 Route::post('v1/categories', CategoryController::class);
+Route::get('v1/categories/{category}', [CategoryController::class, 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
