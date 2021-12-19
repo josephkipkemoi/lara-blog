@@ -23,6 +23,7 @@ use App\Http\Controllers\TagController;
 Route::apiResource('v1/blogs', BlogController::class);
 Route::apiResource('v1/blogs/{blog}/comments', CommentController::class);
 Route::post('v1/tags', TagController::class);
+Route::get('v1/tags', [TagController::class,'index']);
 Route::get('v1/tags/{id}', [TagController::class,'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
