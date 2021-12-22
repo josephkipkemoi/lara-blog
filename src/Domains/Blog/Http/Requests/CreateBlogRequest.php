@@ -1,10 +1,10 @@
 <?php
 
-namespace Blog\Http\Requests;
+namespace Domains\Blog\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBlogRequest extends FormRequest
+class CreateBlogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,10 @@ class UpdateBlogRequest extends FormRequest
     {
         return [
             //
-            'title' => ['string'],
-            'body' => ['string'],
-            'author' => ['string']
+            'author' => ['string'],
+            'title' => ['required','string'],
+            'body' => ['required', 'string'],
+            'user_id' => ['required']
         ];
     }
 }

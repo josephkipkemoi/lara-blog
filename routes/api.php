@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // use App\Http\Controllers\BlogController;
-use Blog\Http\Controllers\BlogController;
+use Domains\Blog\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;

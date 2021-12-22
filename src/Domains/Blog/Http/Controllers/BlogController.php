@@ -1,10 +1,10 @@
 <?php
 
-namespace Blog\Http\Controllers;
+namespace Domains\Blog\Http\Controllers;
 
-use Blog\Http\Requests\CreateBlogRequest;
-use Blog\Http\Requests\UpdateBlogRequest;
-use Blog\Models\Blog;
+use Domains\Blog\Http\Requests\CreateBlogRequest;
+use Domains\Blog\Http\Requests\UpdateBlogRequest;
+use Domains\Blog\Models\Blog;
 
  class BlogController extends Controller
 {
