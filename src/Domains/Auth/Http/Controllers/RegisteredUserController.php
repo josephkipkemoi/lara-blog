@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Domains\Auth\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateRegisteredUserRequest;
-use App\Models\User;
+use Domains\Auth\Http\Controllers\Controller;
+use Domains\Auth\Http\Requests\CreateRegisteredUserRequest;
+use Domains\Auth\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

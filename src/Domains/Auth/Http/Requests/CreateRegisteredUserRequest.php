@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Domains\Auth\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
-use StoreUserDTO;
 
 class CreateRegisteredUserRequest extends FormRequest
 {
@@ -32,13 +31,4 @@ class CreateRegisteredUserRequest extends FormRequest
         ];
     }
 
-
-    public function userDTO(): StoreUserDTO
-    {
-        return new StoreUserDTO (
-            name: $this->name,
-            email: $this->email,
-            password: $this->password,
-        );
-    }
 }
