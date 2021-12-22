@@ -2,6 +2,9 @@
 
 namespace Domains\Blog\Models;
 
+use Domains\Comment\Models\Comment;
+use Domains\Tag\Models\Tag;
+use Domains\Category\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\BlogController;
 use Domains\Blog\Http\Controllers\BlogController;
 use Domains\Category\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
+use Domains\Comment\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
 
 /*
