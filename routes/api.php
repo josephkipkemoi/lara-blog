@@ -5,11 +5,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// use App\Http\Controllers\BlogController;
 use Domains\Blog\Http\Controllers\BlogController;
 use Domains\Category\Http\Controllers\CategoryController;
 use Domains\Comment\Http\Controllers\CommentController;
-use App\Http\Controllers\TagController;
+use Domains\Tag\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
