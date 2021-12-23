@@ -6,6 +6,7 @@ use Domains\Comment\Http\Requests\CreateCommentRequest;
 use Domains\Comment\Http\Requests\UpdateCommentRequest;
 use Domains\Blog\Models\Blog;
 use Domains\Comment\DTO\CreateCommentDTO;
+use Domains\Comment\DTO\UpdateCommentDTO;
 use Domains\Comment\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,6 @@ class CommentController extends Controller
     // Update comment
     public function update(UpdateCommentRequest $request,Blog $blog,Comment $comment)
     {
-        return tap($comment)->update($request->validated())->toArray();
+        return tap($comment)->update((array) new UpdateCommentDTO(...$request->validated()))->toArray();
     }
 }
