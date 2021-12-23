@@ -5,6 +5,7 @@ namespace Domains\Comment\Http\Controllers;
 use Domains\Comment\Http\Requests\CreateCommentRequest;
 use Domains\Comment\Http\Requests\UpdateCommentRequest;
 use Domains\Blog\Models\Blog;
+use Domains\Comment\DTO\CreateCommentDTO;
 use Domains\Comment\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class CommentController extends Controller
     // post comment
     public function store(CreateCommentRequest $request,Blog $blog)
     {
-        return $blog->comments()->create($request->validated());
+        return $blog->comments()->create((array) new CreateCommentDTO(...$request->validated()));
     }
 
     // get comment related to blog
