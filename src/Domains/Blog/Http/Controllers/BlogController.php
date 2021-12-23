@@ -2,6 +2,8 @@
 
 namespace Domains\Blog\Http\Controllers;
 
+use Domains\Blog\DTO\CreateBlogDTO;
+use Domains\Blog\DTO\UpdateBlogDTO;
 use Domains\Blog\Http\Requests\CreateBlogRequest;
 use Domains\Blog\Http\Requests\UpdateBlogRequest;
 use Domains\Blog\Models\Blog;
@@ -27,13 +29,13 @@ use Domains\Blog\Models\Blog;
     public function store(Blog $blog,CreateBlogRequest $request)
     {
         //
-        return $blog->create($request->validated());
+        return $blog->create((array) new CreateBlogDTO(...$request->validated()));
     }
 
     // Update resource by id
     public function update(Blog $blog,UpdateBlogRequest $request)
     {
-        return tap($blog)->update($request->validated());
+        return tap($blog)->update((array) new UpdateBlogDTO(...$request->validated()) );
     }
 
     // Get resource by id
