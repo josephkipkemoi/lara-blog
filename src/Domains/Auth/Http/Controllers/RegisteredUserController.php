@@ -2,6 +2,7 @@
 
 namespace Domains\Auth\Http\Controllers;
 
+use Domains\Auth\DTO\CreateUserDTO;
 use Domains\Auth\Http\Controllers\Controller;
 use Domains\Auth\Http\Requests\CreateRegisteredUserRequest;
 use Domains\Auth\Models\User;
@@ -24,7 +25,7 @@ class RegisteredUserController extends Controller
 
     public function store(CreateRegisteredUserRequest $request)
     {
-        $user = User::create($request->validated());
+        $user = User::create((array) new CreateUserDTO(...$request->validated()));
 
         event(new Registered($user));
 
