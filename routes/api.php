@@ -25,6 +25,7 @@ Route::apiResource('v1/blogs/{blog}/comments', CommentController::class);
 Route::post('v1/tags', TagController::class);
 Route::get('v1/tags', [TagController::class,'index']);
 Route::get('v1/tags/{tag}', [TagController::class,'show']);
+Route::get('v1/tags/{tag}/blogs', [TagController::class,'index']);
 
 Route::post('v1/categories', CategoryController::class);
 Route::get('v1/categories/{category}', [CategoryController::class, 'show']);
