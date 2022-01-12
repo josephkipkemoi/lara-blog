@@ -23,8 +23,8 @@ class TagController extends Controller
     }
 
     // return blog posts related to tag
-    public function index(Request $request, Tag $tag)
+    public function index(Tag $tag)
     {
-        return $tag->find($request->input('tag_id'))->blogs;
+        return $tag->blogs;
     }
 }
