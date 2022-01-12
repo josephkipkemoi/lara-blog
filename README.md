@@ -118,7 +118,7 @@ Setting up project in development mode:
 </tr>
 <tr>
     <td>GET</td>
-    <td>api/v1/tags?tag_id={$tag->id}</td>
+    <td>api/v1/tags/{$tag->id}/blogs</td>
     <td>N/A</td>
 </tr>
 </table>
