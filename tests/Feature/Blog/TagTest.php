@@ -58,7 +58,7 @@ class TagTest extends TestCase
         $blog->tags()->attach($tag);
 
         // Given the tag_id get all blogs associated with the tag name
-        $response = $this->get("api/v1/tags?tag_id={$tag->id}");
+        $response = $this->get("api/v1/tags/{$tag->id}/blogs");
 
         // Response 200 and one blog post return for given tag
         $response->assertOk()
