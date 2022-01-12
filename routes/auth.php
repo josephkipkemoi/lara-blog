@@ -1,9 +1,9 @@
 <?php
 
-use Domains\Auth\Http\Controllers\AuthenticatedSessionController;
-use Domains\Auth\Http\Controllers\RegisteredUserController;
-use Domains\Auth\Http\Controllers\PasswordResetLinkController;
-use Domains\Auth\Http\Controllers\NewPasswordController;
+use Modules\Auth\Http\Controllers\AuthenticatedSessionController;
+use Modules\Auth\Http\Controllers\RegisteredUserController;
+use Modules\Auth\Http\Controllers\PasswordResetLinkController;
+use Modules\Auth\Http\Controllers\NewPasswordController;
 
 use Illuminate\Support\Facades\Route;
 

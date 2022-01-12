@@ -3,10 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use Domains\Blog\Http\Controllers\BlogController;
-use Domains\Category\Http\Controllers\CategoryController;
-use Domains\Comment\Http\Controllers\CommentController;
-use Domains\Tag\Http\Controllers\TagController;
+use Modules\Blog\Http\Controllers\BlogController;
+use Modules\Category\Http\Controllers\CategoryController;
+use Modules\Comment\Http\Controllers\CommentController;
+use Modules\Tag\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
