@@ -33,6 +33,7 @@ Setting up project in development mode:
 <p>Inside the root folder, run the following commands in your terminal</p>
 
 <ul>
+    <li>$ php artisan key:generate</li>
     <li>$ php artisan migrate:fresh</li>
     <li>$ php artisan db:seed</li>
     <li>$ php artisan serve</li>
