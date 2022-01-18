@@ -17,7 +17,7 @@ Setting up project in development mode:
     <li>Clone the repository to your machine and navigate into it:</li>
     <p>git clone https://github.com/josephkipkemoi/larablog</p>
     <li>Install application dependencies</li>
-    <p>composer install</p>
+    <p>composer update</p>
     <li>Create a .env file and include the necessary environment variables. NB- copy from the .env.example and fill in the correct values</li>
 </ul>
 
