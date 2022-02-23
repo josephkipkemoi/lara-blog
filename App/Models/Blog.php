@@ -15,7 +15,7 @@ class Blog extends Model
 
     protected $hidden = ['updated_at','created_at'];
 
-    public function comments()
+    public function comment()
     {
         return $this->hasMany(Comment::class);
     }
