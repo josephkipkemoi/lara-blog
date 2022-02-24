@@ -9,7 +9,15 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','body','author','user_id'];
+    protected $fillable = [
+        'blog_title',
+        'featured',
+        'title',
+        'body',
+        'author',
+        'user_id',
+        'image'
+    ];
 
     protected $casts = ['title' => 'string','author' => 'string','body' => 'string'];
 

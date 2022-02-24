@@ -25,6 +25,9 @@ class CreateBlogsTable extends Migration
             $table->string('author')
                   ->default('guest');
             $table->string('body');
+            $table->string('image');
+            $table->boolean('featured');
+            $table->boolean('blog_title');
 
             $table->timestamps();
         });

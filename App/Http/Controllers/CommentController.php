@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Comment;
+use App\Models\Like;
 
 class CommentController extends Controller
 {
@@ -20,5 +22,22 @@ class CommentController extends Controller
         ]);
 
         return redirect()->route('blog.show', [$blog->id]);
+    }
+
+    public function destroy($blog_id,$comment_id)
+    {
+        Comment::find($comment_id)->delete();
+
+        return redirect()->route('blog.show', $blog_id);
+    }
+
+    public function like(Blog $blog)
+    {
+         Like::create([
+             'comment_id' => 1,
+             'like' => 1
+         ]);
+
+        return redirect()->route('blog.show', [1]);
     }
 }

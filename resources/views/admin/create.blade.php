@@ -11,6 +11,20 @@
             <form method="POST" action="{{route('admin.blog.store')}}">
             @csrf
                 <div class="form-group">
+                    <label>Post Title</label>
+                    <select class="form-control" name="blog_title">
+                        <option value={{false}}>False</option>
+                        <option value={{true}}>True</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Featured</label>
+                    <select class="form-control" name="featured">
+                        <option value={{false}}>False</option>
+                        <option value={{true}}>True</option>
+                    </select>
+                </div>
+                <div class="form-group">
                 @error('author')
                     <span class="text-danger d-block">{{$message}}</span>
                 @enderror
@@ -33,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label>Image URL</label>
-                    <input type="text" class="form-control" placeholder="Image URL" name="img" value="{{old('img')}}"/>
+                    <input type="text" class="form-control" placeholder="Image URL" name="image" value="{{old('image')}}"/>
                 </div>
                 <div class="form-group">
                     <label>Tag</label>

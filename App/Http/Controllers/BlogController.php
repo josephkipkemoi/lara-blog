@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use Exception;
 use Illuminate\Http\Request;
+use Throwable;
 
 use function PHPUnit\Framework\returnSelf;
+use function PHPUnit\Framework\throwException;
 
 class BlogController extends Controller
 {
@@ -14,12 +17,16 @@ class BlogController extends Controller
     {
         $blogs = Blog::all();
 
-        return view('blog.index', compact('blogs'));
+        $blog_title = Blog::where('blog_title',true)->latest()->first();
+
+        $featured = Blog::where('featured', true)->latest()->get();
+ 
+        return view('blog.index', compact('blogs', 'blog_title', 'featured'));
     }
 
     public function show($id)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::findOrFail($id);
 
         $comments = $blog->comment;
 

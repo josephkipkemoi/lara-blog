@@ -24,4 +24,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function like()
+    {
+        return $this->hasOne(Comment::class);
+    }
 }
