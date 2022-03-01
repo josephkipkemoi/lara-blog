@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-        <img src="{{$blog->image}}" alt="image" class="img-thumbnail"/>            
+        <img src="{{$blog->image}}" alt="image" class="img-thumbnail w-100" style="height:320px;"/>            
             <div class="card-body">
                 <h5 class="card-title">{{$blog->title}}</h5>
                 <span>Post by: {{$blog->author}}</span>
