@@ -11,6 +11,7 @@
               <div class="card-header display-6 bg-danger text-white fw-bold">Trending</div>
                 
                 <div class="row mt-2">
+                @if($featured->count() > 0)
                     <div class="row justify-content-around">
                            <div class="card col-sm-5 p-2">
                             <div class="d-flex justify-content-center">
@@ -34,7 +35,9 @@
                                 </div>
                             </div>  
                      </div>    
-
+                @else
+                    <div>No Posts</div>
+                @endif
                 <div class="bg-danger text-white mt-2">
                     <h3 class="fw-bold">Recent Posts</h3>
                 </div>  

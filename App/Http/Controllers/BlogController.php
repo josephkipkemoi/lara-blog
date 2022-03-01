@@ -20,6 +20,7 @@ class BlogController extends Controller
         $blog_title = Blog::where('blog_title',true)->latest()->first();
 
         $featured = Blog::where('featured', true)->latest()->get();
+
  
         return view('blog.index', compact('blogs', 'blog_title', 'featured'));
     }
