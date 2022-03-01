@@ -5,7 +5,7 @@
     <div class="card">
     <div class="card-header">{{$blog->title}}</div>
     <div class="card-body">
-        <img src="{{$blog->image}}" alt="image"/>
+        <img src="{{$blog->image}}" alt="image"  class="img-thumbnail w-100" style="height:320px;"/>
         <p>{{$blog->body}}</p>
     </div>
     </div>
