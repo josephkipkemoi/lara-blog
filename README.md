@@ -1,6 +1,6 @@
 ## Setup
 
-<a href="http://lara-blogapp.herokuapp.com/blogs" target="_blank">Deployed API</a>
+<a href="http://lara-blogapp.herokuapp.com/blogs" target="_blank">Deployed APP</a>
 
 ## Dependencies
 
