@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('blog_id');
-            $table->string('comment_body');
+            $table->text('comment_body');
             $table->bigInteger('likes')->default(0);
 
             $table->timestamps();
