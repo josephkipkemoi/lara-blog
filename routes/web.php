@@ -34,6 +34,9 @@ Route::post('/admin/blogs/store', [AdminDashboardController::class, 'store'])->m
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blog.show');
+Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.delete');
+Route::get('/blogs/{blog}/create', [BlogController::class, 'create'])->name('blog.create');
+Route::patch('/blogs/{blog}/update', [BlogController::class, 'update'])->name('blog.update');
 
 Route::post('/blogs/{blog}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comment.delete');

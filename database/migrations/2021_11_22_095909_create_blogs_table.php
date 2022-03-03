@@ -24,10 +24,10 @@ class CreateBlogsTable extends Migration
             $table->string('title');
             $table->string('author')
                   ->default('guest');
-            $table->string('body');
+            $table->text('body');
             $table->string('image');
-            $table->boolean('featured');
-            $table->boolean('blog_title');
+            $table->boolean('featured')->nullable();
+            $table->boolean('blog_title')->nullable();
 
             $table->timestamps();
         });
