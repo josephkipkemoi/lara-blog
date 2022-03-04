@@ -21,7 +21,19 @@ class CreateCategoriesTable extends Migration
         });
 
         DB::table('categories')->insert([
-            'category' => 'Laravel'
+            'category' => 'CSS',
+        ]);
+        DB::table('categories')->insert([
+            'category' => 'Javascript',
+        ]);
+        DB::table('categories')->insert([
+            'category' => 'HTML',
+        ]);
+        DB::table('categories')->insert([
+            'category' => 'Laravel',
+        ]);
+        DB::table('categories')->insert([
+            'category' => 'Web Development',
         ]);
     }
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaravelController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('blog.index');
-})->name('main');
+Route::get('/', [HomeController::class, 'create'])->name('main');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,6 +36,9 @@ Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blog.show');
 Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.delete');
 Route::get('/blogs/{blog}/create', [BlogController::class, 'create'])->name('blog.create');
 Route::patch('/blogs/{blog}/update', [BlogController::class, 'update'])->name('blog.update');
+
+Route::get('/category/{category}/blogs', [BlogController::class, 'category'])->name('blog.category.index');
+Route::get('/category/{category}/blogs/{blog}', [BlogController::class, 'categoryShow'])->name('blog.category.show');
 
 Route::post('/blogs/{blog}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comment.delete');

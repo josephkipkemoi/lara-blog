@@ -25,6 +25,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" name="category">
+                        @foreach ($categories as $key => $category)
+                            <option value="{{ $key+1 }}">{{ $category->category }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                 @error('author')
                     <span class="text-danger d-block">{{$message}}</span>
                 @enderror

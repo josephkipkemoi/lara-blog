@@ -33,13 +33,17 @@
       <li class="nav-item active">
         <a class="nav-link text-white" href="{{route('admin.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item">
+   
+        <a class="nav-link text-white" href="{{route('laravel')}}">Laravel 9</a>
+      </li>   
     </ul>
   </div>
 
 </nav>
 
 <main class="py-4">
-  @yield('content')
+  @yield('app.layout')
 </main>
 
 <footer class="blog-footer ">
