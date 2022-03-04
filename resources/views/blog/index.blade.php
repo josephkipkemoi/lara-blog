@@ -2,43 +2,82 @@
 
 @section('content')
 <div class="container">
-    <div class="card">
-        <div class="d-flex justify-content-center bg-primary ">
+    <div class="card" style="background-color: #DCDCDD;"> 
+        <div class="d-flex justify-content-center bg-secondary" >
             <h1 class="display-2 fw-bold text-white">LARAVEL BLOG</h1>
         </div>  
         
         <div class="card-body">
-              <div class="card-header display-6 bg-danger text-white fw-bold">Trending</div>
                 
-                <div class="row mt-2">
+                <div class="row m-2">
                 @if($featured->count() > 0)
 
-                <div class="card col-sm-12">
-                @if ($blog_title)                
-                    <div class="d-flex justify-content-center ">
-                        <img src="{{ $blog_title->image }}" class="img-thumbnail img-fluid w-100 mt-1" style="height: 240px;" alt="image"/>
-                    </div>
-                    <div>
-                        <a href="{{route('blog.show', [$blog_title->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title">{{ $blog_title->title }}</h5></a>                                    
-                        <div style="height: 70px; overflow:hidden;">
-                            <p class="card-text">{{$blog_title->body}}</p>
+                <div class="card col-sm-12 shadow-sm p-3 bg-white rounded">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card-header text-white " style="background-color: #46494C;"><h3>Trending</h3></div>
+
+                            <div class="card shadow-sm p-3  bg-white rounded">
+                                <div class="card-body">
+                                    @if ($blog_title)                
+                                    
+                                    <div class="d-flex justify-content-center ">
+                                        <img src="{{ $blog_title->image }}" class="rounded img-fluid  mt-1" style="height: 240px;" alt="image"/>
+                                    </div>
+                                    <div>
+                                        
+                                            <a href="{{route('blog.show', [$blog_title->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title ">{{ $blog_title->title }}</h5></a>                                    
+                                  
+                                        <div style="height: 70px; overflow:hidden;">
+                                            <p class="card-text">{{$blog_title->body}}</p>
+                                        </div>
+
+                                        <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog_title->created_at }}</small>
+
+                                        <div class="pt-2 pb-2">
+                                            <a href="{{route('blog.show', [$blog_title->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                                        </div>
+                                    </div>               
+                                    @else 
+                                        <div class="d-flex justify-content-center">
+                                            <h1>Trending Topic</h1>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        <div class="pt-2 pb-2">
-                            <a href="{{route('blog.show', [$blog_title->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+
+                        <div class=" col-sm-8 shadow-sm p-3 mb-2 bg-white rounded">
+                            <div class="card-header text-white" style="background-color: #46494C;"><h3>Hot Topics</h3></div>
+                            <div class="row p-3">
+                            @foreach ($trending_side as $blog)
+                            <div class="card d-flex col-sm-4">
+
+                                <div>
+                                    <a href="{{route('blog.show', [$blog->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title">{{ $blog->title }}</h5></a>                                    
+                                    <div style="height: 74px; overflow: hidden;">
+                                        <p class="card-text">{{$blog->body}}</p>
+                                    </div> 
+                                    <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at }}</small>
+                                    <div class="pt-2 pb-2">    
+                                        <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            </div>
                         </div>
-                    </div>               
-                @else 
-                    <div class="d-flex justify-content-center">
-                        <h1>Trending Topic</h1>
+                       
                     </div>
-                @endif
+               
                 </div>
-                <div class="card-header display-6 bg-danger text-white fw-bold">Featured</div>
-                    <div class="row justify-content-around p-2" style="height: 400px; overflow-y:scroll;">
+                <div class="shadow p-3 mb-2 mt-2 bg-white rounded">
+                <div class="card-header display-6 text-white mt-2" style="background-color: #46494C;"><h3>Featured</h3></div>
+                    <div class="row align-items-around justify-content-around ">
                         @foreach ($featured as $blog)
-                            <div class=" col-sm-5 mt-1">
+                            <div class="col-sm-4 ">
                                 <div class="d-flex justify-content-center mt-1">
-                                    <img src="{{ $blog->image }}" class="img-thumbnail img-fluid w-100" style="height: 240px;" alt="image"/>
+                                    <img src="{{ $blog->image }}" class="rounded img-fluid w-100" style="height: 240px;" alt="image"/>
                                 </div>
                                 <div>
                                     <a href="{{route('blog.show', [$blog->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title">{{ $blog->title }}</h5></a>                                    
@@ -48,22 +87,26 @@
                                     <div class="pt-2 pb-2">    
                                         <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
                                     </div>
+                                 
                                 </div>
+                                
                             </div>
+                           
                         @endforeach
     
                      </div>    
                 @else
                     <div>No Posts</div>
                 @endif
-                <div class="bg-danger text-white mt-2">
-                    <h3 class="fw-bold">Recent Posts</h3>
-                </div>  
-                    
+                </div>
+
+                <div class="row shadow p-3 m-1  bg-white rounded">
+                <div class="card-header text-white mb-2" style="background-color: #46494C;"><h3>Other News</h3></div>
+                <div class="row align-items-around justify-content-between ">
                 @foreach($blogs as $blog)                 
-                    <div class="card col-sm-3 ">  
+                    <div class="col-sm-3">  
                         <div>
-                            <img src="{{$blog->image}}" alt="image" class="img-fluid img-thumbnail w-100" style="height:240px;"/>
+                            <img src="{{$blog->image}}" alt="image" class="img-fluid rounded w-100" style="height:240px;"/>
                         </div>
                         <div class="card-body">
                             <a href={{route('blog.show', [$blog->id])}} class="text-decoration-none"><h5 clas="card-title">{{$blog->title}}</h5></a>
@@ -75,10 +118,15 @@
                           
                     </div>                
                 @endforeach
-                
                 </div>
-            
+                </div>
+                </div>
+             
         </div>
+       <div class="p-5">
+            {{ $blogs->links() ?? '' }}
+       </div>
     </div>
+    
 </div>
 @endsection

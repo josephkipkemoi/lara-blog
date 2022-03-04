@@ -23,13 +23,15 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderByRaw('created_at DESC')->paginate(8);
 
         $blog_title = Blog::where('blog_title',true)->latest()->first();
 
-        $featured = Blog::where('featured', true)->latest()->get();
+        $featured = Blog::where('featured', true)->orderByRaw('created_at DESC')->paginate(3);
 
-        return view('blog.index', compact('blogs', 'blog_title', 'featured'));
+        $trending_side = Blog::paginate(6);
+
+        return view('blog.index', compact('blogs', 'blog_title', 'featured','trending_side'));
     }
 
     public function show($id)

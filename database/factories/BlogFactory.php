@@ -18,9 +18,12 @@ class BlogFactory extends Factory
 
         return [
             //
-            'title' => $this->faker->title(),
+            'featured' => $this->faker->boolean(),
+            'blog_title' => $this->faker->boolean(),
+            'title' => $this->faker->sentence(),
             'author' => $this->faker->name(),
-            'body' => $this->faker->text(),
+            'body' => $this->faker->paragraph(),
+            'image' => $this->faker->imageUrl(320, 320),
             'user_id' => User::factory()->create()->id
         ];
 
