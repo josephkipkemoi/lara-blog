@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="card p-4">
-        <img src="{{$blog->image}}" alt="image" class="img-thumbnail w-100" style="height:320px;"/>            
+        <div class="card p-4" style="background-color: #DCDCDD;">
+        <img src="{{$blog->image}}" alt="image" class="rounded" style="height:320px;"/>            
             <div class="card-body">
                 <h5 class="card-title">{{$blog->title}}</h5>
                 <span>Post by: {{$blog->author}} <small class="text-info">{{ $blog->created_at }}</small></span>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="container ">
-        <div class="card container mt-4 p-4">
+        <div class="card container mt-4 p-4" style="background-color: #DCDCDD;">
             <div class="p-4"><span class="bg-dark text-white rounded p-2">Discussion</span></div>
             <div class="row justify-content-center">
                 <div class="col col-4 p-2">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col col-6 card bg-light">
                     <div class="card-body">
-                        <span>{{ auth()->user()->full_name }}</span>
+                        <span>{{ auth()->user()->full_name ?? ''}}</span>
                             <form method="POST" action="{{route('comment.store', [$blog->id])}}">
                             @csrf
                                 @error('comment_body')
