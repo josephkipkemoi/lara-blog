@@ -4,18 +4,18 @@
 <div class="container">
     <div class="card" style="background-color: #DCDCDD;"> 
         <div class="d-flex justify-content-center bg-secondary" >
-            <h1 class="display-2 fw-bold text-white">LARAVEL BLOG</h1>
+            <h1 class="display-2 fw-bold text-white">{{ config('app.name') }}</h1>
         </div>  
-        
+        @include('navigation')
         <div class="card-body">
                 
                 <div class="row m-2">
-                @if($featured->count() > 0)
-
+               
                 <div class="card col-sm-12 shadow-sm p-3 bg-white rounded">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="card-header text-white " style="background-color: #46494C;"><h3>Trending</h3></div>
+                            @if($featured->count() > 0)
 
                             <div class="card shadow-sm p-3  bg-white rounded">
                                 <div class="card-body">
@@ -26,7 +26,7 @@
                                     </div>
                                     <div>
                                         
-                                            <a href="{{route('blog.show', [$blog_title->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title ">{{ $blog_title->title }}</h5></a>                                    
+                                        <a href="{{route('blog.show', [$blog_title->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title ">{{ $blog_title->title }}</h5></a>                                    
                                   
                                         <div style="height: 70px; overflow:hidden;">
                                             <p class="card-text">{{$blog_title->body}}</p>

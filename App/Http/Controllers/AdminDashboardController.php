@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+
 class AdminDashboardController extends Controller
 {
     //
@@ -12,7 +14,9 @@ class AdminDashboardController extends Controller
 
     public function create()
     {
-        return view('admin.create');
+        $categories = Category::all();
+
+        return view('admin.create', compact('categories'));
     }
 
     public function store()
@@ -20,6 +24,7 @@ class AdminDashboardController extends Controller
         $data = request()->validate([
             'featured' => ['required', 'boolean'],
             'blog_title' => ['required', 'boolean'],
+            'category' => ['required'],
             'title' => ['required', 'string'],
             'author' => ['required', 'string'],
             'body' => ['required', 'string'],
@@ -38,7 +43,7 @@ class AdminDashboardController extends Controller
         ]);
 
         // Atttachh category ID
-        $blog->category()->sync(1);
+        $blog->category()->attach($data['category']);
 
         session()->flash('status', 'Blog added successfully !');
 

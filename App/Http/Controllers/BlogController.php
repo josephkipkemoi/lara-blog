@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -31,7 +32,9 @@ class BlogController extends Controller
 
         $trending_side = Blog::paginate(6);
 
-        return view('blog.index', compact('blogs', 'blog_title', 'featured','trending_side'));
+        $categories = Category::all();
+
+        return view('blog.index', compact('blogs', 'blog_title', 'featured','trending_side', 'categories'));
     }
 
     public function show($id)
@@ -69,5 +72,23 @@ class BlogController extends Controller
         session()->flash('message', 'Post updated successfully');
 
         return redirect()->route('blog.create', [$id]);
+    }
+
+    public function category($id)
+    {
+        $blogs = Category::find($id)->blog;
+
+        return view('category.index', compact('blogs','id'));
+    }
+
+    public function categoryShow($category_id, $blog_id)
+    {
+        $blog = Blog::find($blog_id);
+
+        $comments = $blog->comment;
+
+        $comment_count = $comments->count();
+
+        return view('category.show', compact('blog','comments', 'comment_count'));
     }
 }

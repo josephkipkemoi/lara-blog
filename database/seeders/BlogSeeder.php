@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\User;
@@ -19,9 +20,13 @@ class BlogSeeder extends Seeder
     {
         //
         // create blog from user in factory
+      $category = Category::factory()->create();
+      
       $blog =  Blog::factory()
                 ->has(Comment::factory()->count(4))
                 ->create();
+                
+      $category->blog()->attach($blog->id);
         // Create tag to attach to post
       $tag1 = Tag::factory()->create();
 
