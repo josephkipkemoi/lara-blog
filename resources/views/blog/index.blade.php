@@ -25,17 +25,17 @@
                                         <img src="{{ $blog_title->image }}" class="rounded img-fluid  mt-1" style="height: 240px;" alt="image"/>
                                     </div>
                                     <div>
-                                        
-                                        <a href="{{route('blog.show', [$blog_title->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title ">{{ $blog_title->title }}</h5></a>                                    
-                                  
+                                        <div class="pt-2">
+                                        <a href="{{route('blog.show', [$blog_title->id])}}" class="text-decoration-none "><h5 class="card-title fw-bold text-black">{{ $blog_title->title }}</h5></a>                                    
+                                        </div>
                                         <div style="height: 70px; overflow:hidden;">
                                             <p class="card-text">{{$blog_title->body}}</p>
                                         </div>
 
-                                        <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog_title->created_at->diffForHumans() }}</small>
+                                        <small class="text-secondary" style="font-size: 16px;">{{ $blog_title->created_at->diffForHumans() }}</small>
 
                                         <div class="pt-2 pb-2">
-                                            <a href="{{route('blog.show', [$blog_title->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                                            <a href="{{route('blog.show', [$blog_title->id])}}" class="btn btn-dark btn-sm">VIEW POST</a>
                                         </div>
                                     </div>               
                                     @else 
@@ -49,22 +49,23 @@
 
                         <div class=" col-sm-8 shadow-sm p-3 mb-2 bg-white rounded">
                             <div class="card-header text-white" style="background-color: #46494C;"><h3>Hot Topics</h3></div>
-                            <div class="row p-3">
-                            @foreach ($trending_side as $blog)
-                            <div class="card d-flex col-sm-4">
-
-                                <div>
-                                    <a href="{{route('blog.show', [$blog->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title">{{ $blog->title }}</h5></a>                                    
-                                    <div style="height: 74px; overflow: hidden;">
-                                        <p class="card-text">{{$blog->body}}</p>
-                                    </div> 
-                                    <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at->diffForHumans() }}</small>
-                                    <div class="pt-2 pb-2">    
-                                        <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                            <div class="d-flex flex-wrap">
+                                @foreach ($trending_side as $blog)
+                                    <div class="col-sm-4 p-2 d-flex row align-items-center">
+                                        <div class="pt-2">
+                                            <a href="{{route('blog.show', [$blog->id])}}" class="text-decoration-none "><h5 class="card-title fw-bold text-black">{{ $blog->title }}</h5></a>                                    
+                                        </div>
+                                        <div style="height: 74px; overflow: hidden;">
+                                            <p class="card-text">{{$blog->body}}</p>
+                                        </div>
+                                        <div> 
+                                            <small class="text-secondary" style="font-size: 16px;">{{ $blog->created_at->diffForHumans() }}</small>
+                                        </div>
+                                        <div  >    
+                                            <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-dark btn-sm">VIEW POST</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            @endforeach
+                                @endforeach
                             </div>
                         </div>
                        
@@ -73,23 +74,24 @@
                 </div>
                 <div class="shadow p-3 mb-2 mt-2 bg-white rounded">
                 <div class="card-header display-6 text-white mt-2" style="background-color: #46494C;"><h3>Featured</h3></div>
-                    <div class="row align-items-around justify-content-around ">
+                    <div class="row">
                         @foreach ($featured as $blog)
-                            <div class="col-sm-4 ">
+                            <div class="col-sm-4 row align-items-center">
                                 <div class="d-flex justify-content-center mt-1">
                                     <img src="{{ $blog->image }}" class="rounded img-fluid w-100" style="height: 240px;" alt="image"/>
                                 </div>
                                 <div>
-                                    <a href="{{route('blog.show', [$blog->id])}}" class="text-decoration-underline fw-bold"><h5 class="card-title">{{ $blog->title }}</h5></a>                                    
+                                    <div class="pt-2">
+                                        <a href="{{route('blog.show', [$blog->id])}}" class="text-decoration-none"><h5 class="card-title fw-bold text-black">{{ $blog->title }}</h5></a>                                    
+                                    </div>
                                     <div style="height: 74px; overflow: hidden;">
                                         <p class="card-text">{{$blog->body}}</p>
                                     </div> 
-                                    <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at->diffForHumans() }}</small>
+                                    <small class="text-secondary" style="font-size: 16px;">{{ $blog->created_at->diffForHumans() }}</small>
 
                                     <div class="pt-2 pb-2">    
-                                        <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                                        <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-dark btn-sm">VIEW POST</a>
                                     </div>
-                                 
                                 </div>
                                 
                             </div>
@@ -104,20 +106,22 @@
 
                 <div class="row shadow p-3 m-1  bg-white rounded">
                 <div class="card-header text-white mb-2" style="background-color: #46494C;"><h3>Other News</h3></div>
-                <div class="row align-items-around justify-content-between ">
+                <div class="row">
                 @foreach($blogs as $blog)                 
-                    <div class="col-sm-3">  
+                    <div class="col-sm-3 row align-items-center">  
                         <div>
                             <img src="{{$blog->image}}" alt="image" class="img-fluid rounded w-100" style="height:240px;"/>
                         </div>
                         <div class="card-body">
-                            <a href={{route('blog.show', [$blog->id])}} class="text-decoration-none"><h5 clas="card-title">{{$blog->title}}</h5></a>
-                            <div style="height:120px; overflow:hidden;">
+                            <div class="pt-2">
+                                <a href={{route('blog.show', [$blog->id])}} class="text-decoration-none"><h5 class="card-title fw-bold text-black">{{$blog->title}}</h5></a>
+                            </div>
+                            <div style="height:110px; overflow:hidden;">
                                 <p class="card-text">{{$blog->body}}</p>
                             </div>
-                            <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at->diffForHumans() }}</small>
+                            <small class="text-secondary" style="font-size: 16px;">{{ $blog->created_at->diffForHumans() }}</small>
                             <div class="pt-2 pb-2">
-                                <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                                <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-dark btn-sm">VIEW POST</a>
                             </div>
                         </div>            
                           
