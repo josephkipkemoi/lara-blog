@@ -39,15 +39,19 @@
       <li class="nav-item active">
         <a class="nav-link text-white" href="{{route('main')}}">{{ config('app.name') }}</a>
       </li>
+    
+      @auth
       <li class="nav-item active">
         <a class="nav-link text-white" href="{{route('admin.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
+      </li>    
+      @else 
+      <li class="nav-item active ">
         <a class="nav-link text-white" href="{{route('register')}}">Register</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link text-white" href="{{route('login')}}">Login </a>
       </li>
+      @endauth
     </ul>
   </div>
 

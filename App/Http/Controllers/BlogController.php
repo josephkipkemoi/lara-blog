@@ -42,13 +42,15 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
 
+        $time_stamp = $blog->created_at->diffForHumans();
+
         $comments = $blog->comment;
 
         $comment_count = $comments->count();
 
         $likes_count = 0;
 
-        return view('blog.show', compact('blog','comments', 'comment_count','likes_count'));
+        return view('blog.show', compact('blog','comments', 'comment_count','likes_count', 'time_stamp'));
     }
 
     public function destroy($id)

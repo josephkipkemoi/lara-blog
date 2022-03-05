@@ -6,11 +6,11 @@
         <img src="{{$blog->image}}" alt="image" class="rounded" style="height:320px;"/>            
             <div class="card-body">
                 <h5 class="card-title">{{$blog->title}}</h5>
-                <span>Post by: {{$blog->author}} <small class="text-info">{{ $blog->created_at }}</small></span>
+                <span>Post by: {{$blog->author}} <small class="text-secondary">{{ $time_stamp }}</small></span>
                 <div>
                     <p>{{$blog->body}}</p>
                 </div>
-
+                @if(auth()->user() && auth()->user()->email == 'jkemboe@gmail.com')
                 <div class="d-flex">
                 <a href="{{ route('blog.create', [$blog->id]) }}" class="btn btn-primary">Edit</a>
 
@@ -19,6 +19,14 @@
                     @method('DELETE')
                     <button class="btn btn-danger">Delete</button>
                 </form>
+                </div>
+                @endif
+                <div>
+                    <small>Tags: 
+                        @foreach ($blog->tags as $tag)
+                            {{ $tag->tag }}
+                        @endforeach
+                    </small>
                 </div>
             </div>
         </div>

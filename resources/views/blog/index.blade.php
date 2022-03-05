@@ -32,7 +32,7 @@
                                             <p class="card-text">{{$blog_title->body}}</p>
                                         </div>
 
-                                        <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog_title->created_at }}</small>
+                                        <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog_title->created_at->diffForHumans() }}</small>
 
                                         <div class="pt-2 pb-2">
                                             <a href="{{route('blog.show', [$blog_title->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
@@ -58,7 +58,7 @@
                                     <div style="height: 74px; overflow: hidden;">
                                         <p class="card-text">{{$blog->body}}</p>
                                     </div> 
-                                    <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at }}</small>
+                                    <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at->diffForHumans() }}</small>
                                     <div class="pt-2 pb-2">    
                                         <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
                                     </div>
@@ -84,6 +84,8 @@
                                     <div style="height: 74px; overflow: hidden;">
                                         <p class="card-text">{{$blog->body}}</p>
                                     </div> 
+                                    <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at->diffForHumans() }}</small>
+
                                     <div class="pt-2 pb-2">    
                                         <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
                                     </div>
@@ -113,7 +115,10 @@
                             <div style="height:120px; overflow:hidden;">
                                 <p class="card-text">{{$blog->body}}</p>
                             </div>
-                            <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                            <small class="text-secondary" style="font-size: 16px;">Posted: {{ $blog->created_at->diffForHumans() }}</small>
+                            <div class="pt-2 pb-2">
+                                <a href="{{route('blog.show', [$blog->id])}}" class="btn btn-primary btn-sm">VIEW POST</a>
+                            </div>
                         </div>            
                           
                     </div>                
