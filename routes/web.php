@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaravelController;
+use App\Http\Controllers\ReactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,7 @@ Route::post('/blogs/{blog}/comments', [CommentController::class, 'store'])->midd
 Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comment.delete');
 
 Route::post('/blogs/{blog}/comments/{comment}/like', [CommentController::class, 'like'])->middleware('auth')->name('comment.like');
- 
+
+// Route::post('/blogs/{blog}/comments/{comment}/like', [ReactionController::class, 'toggle'])->middleware('auth')->name('reaction.like');
 
 require __DIR__.'/auth.php';

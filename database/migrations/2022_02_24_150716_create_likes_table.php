@@ -18,6 +18,8 @@ class CreateLikesTable extends Migration
 
             $table->bigInteger('like')->default(0);
             $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('blog_id');
         
             $table->timestamps();
         });

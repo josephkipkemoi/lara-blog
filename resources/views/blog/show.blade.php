@@ -70,9 +70,9 @@
                             <div class="d-flex align-items-center">
                                 <form method="POST" action="{{route('comment.like', [$blog->id, $comment->id])}}">
                                     @csrf
-                                        <button type="submit"> <small>Like (0) | </small></button>
+                                        <button type="submit"> <small>Like ({{ $likes_count }}) | </small></button>
                                 </form>
-                               
+
                                 <small>Reply | </small>
                                 <small>Edit | </small>
                                 @if(auth()->user() && $comment->user_id == auth()->user()->id)

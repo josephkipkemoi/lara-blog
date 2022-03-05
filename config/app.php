@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Lara Blog'),
+    'name' => env('APP_NAME', 'Web Dev'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Qirolab\Laravel\Reactions\ReactionsServiceProvider::class,
 
         /*
          * Application Service Providers...

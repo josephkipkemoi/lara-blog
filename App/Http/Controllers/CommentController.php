@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\Like;
+use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
@@ -31,13 +32,15 @@ class CommentController extends Controller
         return redirect()->route('blog.show', $blog_id);
     }
 
-    public function like(Blog $blog)
+    public function like(Blog $blog, Comment $comment)
     {
-         Like::create([
-             'comment_id' => 1,
-             'like' => 1
-         ]);
-
-        return redirect()->route('blog.show', [1]);
+        
+        $likes = auth()->user()->like()->Create([
+            'blog_id' => $blog->id,
+            'comment_id' => $comment->id,
+            'like' => DB::raw('++1')
+        ]);
+        
+        return redirect()->route('blog.show', [$blog->id]);
     }
 }

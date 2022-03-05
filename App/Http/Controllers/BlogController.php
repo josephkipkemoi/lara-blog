@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Like;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class BlogController extends Controller
 
         $featured = Blog::where('featured', true)->orderByRaw('created_at DESC')->paginate(3);
 
-        $trending_side = Blog::paginate(6);
+        $trending_side = Blog::orderByRaw('created_at DESC')->paginate(6);
 
         $categories = Category::all();
 
@@ -45,7 +46,9 @@ class BlogController extends Controller
 
         $comment_count = $comments->count();
 
-        return view('blog.show', compact('blog','comments', 'comment_count'));
+        $likes_count = 0;
+
+        return view('blog.show', compact('blog','comments', 'comment_count','likes_count'));
     }
 
     public function destroy($id)
