@@ -31,7 +31,7 @@ class BlogController extends Controller
 
         $featured = Blog::where('featured', true)->orderByRaw('created_at DESC')->paginate(3);
 
-        $trending_side = Blog::orderByRaw('created_at DESC')->paginate(6);
+        $trending_side = Category::find(Category::CATEGORY_WEBDEVELOPEMENT)->blog()->orderByRaw('created_at DESC')->paginate(6);
 
         $categories = Category::all();
 
