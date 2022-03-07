@@ -6,7 +6,9 @@
         <div class="card-header">Add Blog Post</div>
         <div class="card-body">
         @if(session()->has('status'))
-            <span>{{session()->get('status')}}</span>
+            <div class="alert alert-success">
+                <span>{{session()->get('status')}}</span>
+            </div>
         @endif
             <form method="POST" action="{{route('admin.blog.store')}}">
             @csrf

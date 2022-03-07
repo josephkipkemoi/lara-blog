@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
+use App\Models\User;
+use App\Policies\BlogPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -24,6 +27,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        // Authorize user to create and store blog post
+        Gate::define('create-post', [BlogPolicy::class, 'store']);
 
         //
     }

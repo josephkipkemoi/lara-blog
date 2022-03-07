@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CreateBlogDTO;
+use App\Http\Requests\CreateBlogRequest;
+use App\Models\Blog;
 use App\Models\Category;
+use Illuminate\Support\Facades\Gate;
 
 class AdminDashboardController extends Controller
 {
@@ -19,33 +23,17 @@ class AdminDashboardController extends Controller
         return view('admin.create', compact('categories'));
     }
 
-    public function store()
+    public function store(CreateBlogRequest $request)
     {
-        $data = request()->validate([
-            'featured' => ['required', 'boolean'],
-            'blog_title' => ['required', 'boolean'],
-            'category' => ['required'],
-            'title' => ['required', 'string'],
-            'author' => ['required', 'string'],
-            'body' => ['required', 'string'],
-            'image' => ['string'],
-            'tag' => ['string']
-        ]);
-        
-        $blog = auth()->user()->blog()->create([
-            'title' => $data['title'],
-            'author' => $data['author'],
-            'body' => $data['body'],
-            'image' => $data['image'],
-            'tag' => $data['tag'],
-            'featured' => $data['featured'],
-            'blog_title' => $data['blog_title'],
-        ]);
-
+        // Validate incoming request      
+        // Add resource fields from data request
+        $post = auth()->user()->blog()->create((array) new CreateBlogDTO(...$request->validated()));
+    
         // Atttachh category ID
-        $blog->category()->attach($data['category']);
-
-        session()->flash('status', 'Blog added successfully !');
+        $post->category()->attach($request->validated()['category']);
+    
+        // Send session messsage once resource is succesfully saved in Database
+        session()->flash('status', 'Post added successfully !');
 
         return redirect()->route('admin.create');
     }

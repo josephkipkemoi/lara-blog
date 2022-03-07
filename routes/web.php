@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaravelController;
+use App\Http\Controllers\ReactController;
 use App\Http\Controllers\ReactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::view('/{path?}','app');
+// Route::view('/', [ReactController::class, 'show']);
+
+// Route::get('/{path?}', [
+//     'uses' => 'App\Http\Controllers\ReactController@show',
+//     'as' => 'react',
+//     'where' => ['path' => '.*']
+// ]);
 
 Route::get('/', [HomeController::class, 'create'])->name('main');
 
@@ -46,6 +56,6 @@ Route::delete('/blogs/{blog}/comments/{comment}', [CommentController::class, 'de
 
 Route::post('/blogs/{blog}/comments/{comment}/like', [CommentController::class, 'like'])->middleware('auth')->name('comment.like');
 
-// Route::post('/blogs/{blog}/comments/{comment}/like', [ReactionController::class, 'toggle'])->middleware('auth')->name('reaction.like');
+Route::post('/blogs/{blog}/comments/{comment}/like', [ReactionController::class, 'toggle'])->middleware('auth')->name('reaction.like');
 
 require __DIR__.'/auth.php';

@@ -14,14 +14,14 @@ import Footer from './Footer';
 
 function App() {
     return (
-      <>
-            <BrowserRouter>
+      <React.Fragment>
+            {/* <BrowserRouter> */}
             <Switch>
                 <Route exact path="/" component={LandingPage}/>
                 <Route exact path="/blog/:id" component={BlogPage}/>
             </Switch>
-            </BrowserRouter>
-      </>
+            {/* </BrowserRouter> */}
+      </React.Fragment>
     );
 }
 
@@ -36,11 +36,11 @@ function LandingPage() {
 
 
     return (
-        <>
+        <React.Fragment>
             <Header/>
             <Main/>
             <Footer/>
-        </>
+        </React.Fragment>
     )
 }
 
@@ -57,7 +57,7 @@ function BlogPage(props) {
     const comments = useSelector(state => state.comments);
 
     return (
-        <>
+        <React.Fragment>
             <Header/>
             {post.map((data,key) => {
                 const {title, author, body} = data.payload
@@ -66,11 +66,12 @@ function BlogPage(props) {
                   )
             })}
             <Footer/>
-        </>
+        </React.Fragment>
     )
 }
-export default App;
 
-if (document.getElementById('App')) {
-    ReactDOM.render(<Provider store={store}> <App /></Provider>, document.getElementById('App'));
+export default App;
+console.log('d')
+if (document.getElementById('app')) {
+    ReactDOM.render(<Provider store={store}> <App /></Provider>, document.getElementById('app'));
 }
