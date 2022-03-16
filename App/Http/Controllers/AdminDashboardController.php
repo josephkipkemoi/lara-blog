@@ -25,7 +25,8 @@ class AdminDashboardController extends Controller
 
     public function store(CreateBlogRequest $request)
     {
-        // Validate incoming request      
+        // Validate incoming request     
+ 
         // Add resource fields from data request
         $post = auth()->user()->blog()->create((array) new CreateBlogDTO(...$request->validated()));
     

@@ -14,8 +14,8 @@ class CreateBlogRequest extends FormRequest
      */
     public function authorize()
     {
-        // return true;
-        return !Gate::inspect('create-post');
+        // check if user is authorized to perfom store action on this resource;
+        return Gate::inspect('create-post')->allowed();
     }
 
     /**

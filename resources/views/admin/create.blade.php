@@ -12,6 +12,10 @@
         @endif
             <form method="POST" action="{{route('admin.blog.store')}}">
             @csrf
+ 
+            <textarea id="summernote" name="editordata"></textarea>
+               
+              
                 <div class="form-group">
                     <label>Post Title</label>
                     <select class="form-control" name="blog_title">
@@ -68,4 +72,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

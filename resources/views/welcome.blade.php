@@ -39,11 +39,12 @@
       <li class="nav-item active">
         <a class="nav-link text-white" href="{{route('main')}}">{{ config('app.name') }}</a>
       </li>
-    
+      @can('create-post')
       @auth
       <li class="nav-item active">
         <a class="nav-link text-white" href="{{route('admin.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a>
       </li>    
+      @endcan
       @else 
       <li class="nav-item active ">
         <a class="nav-link text-white" href="{{route('register')}}">Register</a>
